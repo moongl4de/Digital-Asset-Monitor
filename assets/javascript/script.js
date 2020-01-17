@@ -41,6 +41,6 @@ function read() {
 
   $("#xrp-icon").on('click', function(){
     modal.addClass("is-active")
-  })
+  })  
 
   
