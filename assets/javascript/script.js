@@ -8,10 +8,13 @@ var modal = $("#main-modal")
 var xButton = $("#x-button")
 var modalTitle = $(".modal-card-title")
 var DAMheading = $(".heading")
+var nomicsURL = `https://api.nomics.com/v1/currencies/ticker?key=${nomicsKey}&ids=BTC,ETH,XRP&interval=1d,30d&convert=EUR`
+
 
 read();
 
 function read() {
+
   var i = 0;
   setInterval(function () {
     if (buzzwordsSplit[i] === undefined) {
@@ -54,6 +57,11 @@ $("#xrp-icon").on('click', function () {
   newsArticle(createURL("ripple"));
 });
 
+
+//Ideally, we should be able to have one or two functions. One to interact with the news API and print that information into the modal, and one to interact with the Nomics API to grab price, market cap, volume, etc.
+
+
+
 //method to create request URL based on the event and respective searchParameter
 function createURL(searchParam) {
   var cryptoURL = `https://cryptocontrol.io/api/v1/public/news/coin/${searchParam}?key=${cryptocontrolAPIKey}&limit=5`;
@@ -82,6 +90,7 @@ function newsArticle(cryptoURL) {
       var $articleHeader = $("<div>");
       $articleHeader.addClass("message-header");
       $article.append($articleHeader);
+
 
       var $title = $("<p>");
       $title.text(response[i].title);
@@ -114,28 +123,3 @@ function newsArticle(cryptoURL) {
     }
   })
 }
-
-
-
-
-
-
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
-
-    // The data for our dataset
-    data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-            label: 'Price Action Over 7 Days',
-            backgroundColor: 'rgb(255, 255, 255)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000]
-        }]
-    },
-
-    // Configuration options go here
-    options: {}
-});
