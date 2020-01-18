@@ -9,6 +9,8 @@ var xButton = $("#x-button")
 var modalTitle = $(".modal-card-title")
 var DAMheading = $(".heading")
 
+var nomicsURL = `https://api.nomics.com/v1/currencies/ticker?key=${nomicsKey}&ids=BTC,ETH,XRP&interval=1d,30d&convert=EUR`
+
 read();
 
 function read() {
