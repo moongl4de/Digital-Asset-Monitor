@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Digital Asset Tracker</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
@@ -20,15 +20,16 @@
 
               <!--is-active will need to be removed/added in javascript-->
   <div class="modal" id="main-modal">
-    <div class="modal-background"></div>
+    <div class="modal-background" style="opacity: 1;"></div>
     <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Testing</p>
+      <header class="modal-card-head" style="background-color: rgb(255, 255, 255);">
+        <p class="modal-card-title" style="text-shadow: 0px 0px 5px black;"></p>
         <button id="x-button" type="button" class="delete" aria-label="close"></button>
       </header>
       <section class="modal-card-body" style="color: black">
         Price, Volume, Market Cap, etc will go here...<br><br>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa necessitatibus nesciunt hic voluptatibus ullam fugit omnis quis, voluptates quaerat iusto, aliquid maxime deleniti obcaecati possimus aspernatur! Magnam distinctio iure laboriosam nihil similique quam laudantium recusandae veritatis reprehenderit animi fuga libero porro molestias, voluptatum dolores officiis laborum velit maxime, ad atque! Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis accusantium error deserunt eligendi quisquam iusto cupiditate dolores hic, harum id veniam animi quam doloribus quidem perspiciatis distinctio neque, nam maxime dolorum? Optio tempora quisquam dolorum in sunt delectus neque quidem, laborum, et sit cupiditate iure nulla deserunt laudantium maiores saepe. <br><br>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa necessitatibus nesciunt hic voluptatibus ullam fugit omnis quis, voluptates quaerat iusto, aliquid maxime deleniti obcaecati possimus aspernatur! Magnam distinctio iure laboriosam nihil similique quam laudantium recusandae veritatis reprehenderit animi fuga libero porro molestias, voluptatum dolores officiis  <br><br>
+        <canvas id="myChart"></canvas>
 
         <div class="article-div">
           Articles will go here...<br>
@@ -45,8 +46,6 @@
 
     </div>
   </div>
-
-
 
             <div class="icon-container">
                 <img class="icons" id="btc-icon" src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9867bdb19da14e63ffbe63805298fa60bf255cdd/128/icon/btc.png">

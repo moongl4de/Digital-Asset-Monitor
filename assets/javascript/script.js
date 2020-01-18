@@ -7,6 +7,7 @@ var newsKey = "5d34d4f133f84cbcba757cdb7cd169ef";
 var modal = $("#main-modal")
 var xButton = $("#x-button")
 var modalTitle = $(".modal-card-title")
+var DAMheading = $(".heading")
 
 read();
 
@@ -18,8 +19,9 @@ function read() {
       }
       $("#header-reader").text(buzzwordsSplit[i]);
       i++;
-    }, 500);
+    }, 1000);
   };
+
 
 
   //Ideally, we should be able to have one or two functions. One to interact with the news API and print that information into the modal, and one to interact with the Nomics API to grab price, market cap, volume, etc.
@@ -27,6 +29,8 @@ function read() {
   xButton.on('click', function(){
     modal.removeClass("is-active")
     modalTitle.html("")
+    DAMheading.removeAttr("style", "opacity: 1")
+
   });
 
 
@@ -34,17 +38,20 @@ function read() {
     console.log("Testing BTC")
     modal.addClass("is-active")
     modalTitle.html("Bitcoin")
+    DAMheading.attr("style", "opacity: 0")
     
   });
 
   $("#eth-icon").on('click', function(){
     modal.addClass("is-active")
     modalTitle.html("Ethereum")
+    DAMheading.attr("style", "opacity: 0")
   });
 
   $("#xrp-icon").on('click', function(){
     modal.addClass("is-active")
     modalTitle.html("XRP")
+    DAMheading.attr("style", "opacity: 0")
   });  
 
   
