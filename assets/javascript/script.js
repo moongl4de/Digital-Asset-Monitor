@@ -46,19 +46,13 @@ $("#btc-icon").on('click', function(){
     DAMheading.attr("style", "opacity: 0")
   });  
 
-xButton.on('click', function () {
-  modal.removeClass("is-active")
-  modalTitle.html("")
-  $(".article-div").html("")
-});
-
-  //Ideally, we should be able to have one or two functions. One to interact with the news API and print that information into the modal, and one to interact with the Nomics API to grab price, market cap, volume, etc.
   xButton.on('click', function(){
     modal.removeClass("is-active")
     modalTitle.html("")
     DAMheading.removeAttr("style", "opacity: 1")
 
   });
+
 //method to create request URL based on the event and respective searchParameter
 function createURL(searchParam) {
   var cryptoURL = `https://cryptocontrol.io/api/v1/public/news/coin/${searchParam}?key=${cryptocontrolAPIKey}&limit=5`;
