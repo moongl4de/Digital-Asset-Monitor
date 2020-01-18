@@ -8,52 +8,59 @@ var modal = $("#main-modal")
 var xButton = $("#x-button")
 var modalTitle = $(".modal-card-title")
 var DAMheading = $(".heading")
-
 var nomicsURL = `https://api.nomics.com/v1/currencies/ticker?key=${nomicsKey}&ids=BTC,ETH,XRP&interval=1d,30d&convert=EUR`
+
 
 read();
 
 function read() {
-    var i = 0;
-    setInterval(function() {
-      if (buzzwordsSplit[i] === undefined) {
-        i = 0;
-      }
-      $("#header-reader").text(buzzwordsSplit[i]);
-      i++;
-    }, 1000);
-  };
 
+  var i = 0;
+  setInterval(function () {
+    if (buzzwordsSplit[i] === undefined) {
+      i = 0;
+    }
+    $("#header-reader").text(buzzwordsSplit[i]);
+    i++;
+  }, 500);
+};
 
 
 //Ideally, we should be able to have one or two functions. One to interact with the news API and print that information into the modal, and one to interact with the Nomics API to grab price, market cap, volume, etc.
 
-$("#btc-icon").on('click', function(){
-    console.log("Testing BTC")
-    modal.addClass("is-active")
-    modalTitle.html("Bitcoin")
-    DAMheading.attr("style", "opacity: 0")
-    
-  });
+xButton.on('click', function () {
+  modal.removeClass("is-active")
+  modalTitle.html("")
+  $(".article-div").html("")
+  DAMheading.removeAttr("style", "opacity: 0")
+});
 
-  $("#eth-icon").on('click', function(){
-    modal.addClass("is-active")
-    modalTitle.html("Ethereum")
-    DAMheading.attr("style", "opacity: 0")
-  });
 
-  $("#xrp-icon").on('click', function(){
-    modal.addClass("is-active")
-    modalTitle.html("XRP")
-    DAMheading.attr("style", "opacity: 0")
-  });  
+$("#btc-icon").on('click', function () {
+  modal.addClass("is-active")
+  modalTitle.html("Bitcoin")
+  DAMheading.attr("style", "opacity: 0")
+  newsArticle(createURL("bitcoin"));
+});
 
-  xButton.on('click', function(){
-    modal.removeClass("is-active")
-    modalTitle.html("")
-    DAMheading.removeAttr("style", "opacity: 1")
+$("#eth-icon").on('click', function () {
+  modal.addClass("is-active")
+  modalTitle.html("ethereum")
+  DAMheading.attr("style", "opacity: 0")
+  newsArticle(createURL("ethereum"));
+});
 
-  });
+$("#xrp-icon").on('click', function () {
+  modal.addClass("is-active")
+  modalTitle.html("XRP")
+  DAMheading.attr("style", "opacity: 0")
+  newsArticle(createURL("ripple"));
+});
+
+
+//Ideally, we should be able to have one or two functions. One to interact with the news API and print that information into the modal, and one to interact with the Nomics API to grab price, market cap, volume, etc.
+
+
 
 //method to create request URL based on the event and respective searchParameter
 function createURL(searchParam) {

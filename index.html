@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 </head>
 <body>
-    
     <div class="container">
-      
+
         <div class="main-container">
             <h1 class="heading">Digital Asset Monitor</h1>
             <header id="header-reader"></header>
@@ -27,9 +28,19 @@
         <button id="x-button" type="button" class="delete" aria-label="close"></button>
       </header>
       <section class="modal-card-body" style="color: black">
+
+        <div class="container">
+        <p id="price">Price: </p>
+        <p id="marketCap">Market Cap: </p>
+        <p id="priceGraph">Price Graph (past 7 days)</p>
+        
+      </div>
+      <canvas id="myChart"></canvas><br><br>
+
         Price, Volume, Market Cap, etc will go here...<br><br>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa necessitatibus nesciunt hic voluptatibus ullam fugit omnis quis, voluptates quaerat iusto, aliquid maxime deleniti obcaecati possimus aspernatur! Magnam distinctio iure laboriosam nihil similique quam laudantium recusandae veritatis reprehenderit animi fuga libero porro molestias, voluptatum dolores officiis  <br><br>
         <canvas id="myChart"></canvas>
+
 
         <div class="article-div">
           <!-- Articles will go here... -->
@@ -47,11 +58,10 @@
 
                 <img class="icons" id="xrp-icon" src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9867bdb19da14e63ffbe63805298fa60bf255cdd/128/icon/xrp.png">
             </div>
-
         </div>
     </div>
 
-
+    
 
 </body>
     

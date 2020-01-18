@@ -99,9 +99,7 @@ header {
 }
 
 
-/* #eth-icon {
-    
-} */
+
 
 #eth-icon:hover {
     opacity: 1;
@@ -112,9 +110,6 @@ header {
     cursor: pointer;
 }
 
-/* #xrp-icon {
-       
-} */
 
 #xrp-icon:hover {
     opacity: 1;
@@ -124,8 +119,6 @@ header {
     filter: saturate(1);
     cursor: pointer;
 }
-
-
 
 #title-bitcoin {
     text-align: center;
@@ -164,5 +157,11 @@ footer{
     height: 100%;
     width: 100%;
     text-decoration: none;
+}
+
+#main-modal {
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1; 
+    animation-fill-mode: forwards; 
 }
 
