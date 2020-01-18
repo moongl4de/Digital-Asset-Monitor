@@ -136,7 +136,7 @@ footer{
     border-top: 1px white solid;
 }
 
-li {
+#divContainer {
     width: 100%;
     height: 50px;
     background-color: rgb(180, 180, 180);
@@ -144,4 +144,17 @@ li {
     padding: 0 5px;
     border-radius: 10px;
     border: 1px rgb(61, 61, 61) solid;
+    color: black;
+}
+
+.articleContainer{
+    margin-top: 5px;
+    padding-right: 8px;
+}
+
+.message a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
 }
