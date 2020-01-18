@@ -7,6 +7,7 @@ var cryptocontrolAPIKey = "01a022055e3546253ff00081a2996bfd";
 var modal = $("#main-modal")
 var xButton = $("#x-button")
 var modalTitle = $(".modal-card-title")
+var DAMheading = $(".heading")
 
 read();
 
@@ -28,25 +29,28 @@ xButton.on('click', function () {
   modal.removeClass("is-active")
   modalTitle.html("")
   $(".article-div").html("")
+  DAMheading.removeAttr("style", "opacity: 0")
 });
 
 
 $("#btc-icon").on('click', function () {
   modal.addClass("is-active")
   modalTitle.html("Bitcoin")
-
+  DAMheading.attr("style", "opacity: 0")
   newsArticle(createURL("bitcoin"));
 });
 
 $("#eth-icon").on('click', function () {
   modal.addClass("is-active")
   modalTitle.html("ethereum")
+  DAMheading.attr("style", "opacity: 0")
   newsArticle(createURL("ethereum"));
 });
 
 $("#xrp-icon").on('click', function () {
   modal.addClass("is-active")
   modalTitle.html("XRP")
+  DAMheading.attr("style", "opacity: 0")
   newsArticle(createURL("ripple"));
 });
 
@@ -110,3 +114,28 @@ function newsArticle(cryptoURL) {
     }
   })
 }
+
+
+
+
+
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'Price Action Over 7 Days',
+            backgroundColor: 'rgb(255, 255, 255)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
