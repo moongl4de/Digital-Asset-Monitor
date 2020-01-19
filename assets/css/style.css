@@ -158,3 +158,24 @@ footer{
     width: 100%;
     text-decoration: none;
 }
+
+
+.modal-card, .modal-content {
+    margin: 0 auto;
+    width: 1200px;
+}
+
+.is-scrollable {
+    overflow-y: scroll;
+    /* overflow-x: hidden; */
+    height: 300px;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: rgb(233, 229, 3);
+}

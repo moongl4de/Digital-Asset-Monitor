@@ -50,6 +50,9 @@ $("#xrp-icon").on('click', function () {
   newsArticle(createURL("ripple"));
 });
 
+//div container to hold all contents associated with articles
+var $articlediv = $(".article-container");
+
 //method to create request URL based on the event and respective searchParameter
 function createURL(searchParam) {
   var cryptoURL = `https://cryptocontrol.io/api/v1/public/news/coin/${searchParam}?key=${cryptocontrolAPIKey}&limit=5`;
@@ -57,23 +60,25 @@ function createURL(searchParam) {
 }
 
 //method to create articles HTML modal by taking advantage of Ajax API response data 
+//cryptoURL - is a callBack function
 function newsArticle(cryptoURL) {
   $.ajax({
     url: cryptoURL,
     method: "GET",
   }).then(function (response) {
-    var $articlediv = $(".article-div");
+    console.log("response = "+JSON.stringify(response));
 
+$articlediv.addClass("is-scrollable");
     for (var i = 0; i < response.length; i++) {
+      var $link = $("<a>");
+      // $link.addClass("column")
+      $link.attr("href",response[i].url);
+      $link.attr("target","_blank");
+      $articlediv.append($link);
 
       var $article = $("<article>");
       $article.addClass("message is-small");
-      $articlediv.append($article);
-
-      var $link = $("<a>");
-      
-      $link.attr("href",response[i].url);
-      $article.append($link);
+      $link.append($article);
 
       var $articleHeader = $("<div>");
       $articleHeader.addClass("message-header");
@@ -110,3 +115,18 @@ function newsArticle(cryptoURL) {
     }
   })
 }
+
+var $twitterFeed = $("<a>");
+$twitterFeed.addClass("column")
+$twitterFeed.attr({"href":"https://twitter.com/TwitterDev", "data-width":"300",
+"data-height":"300"});
+$twitterFeed.text("Tweets by @TwitterDev")
+$(".tweeterFeed-container").append($twitterFeed);
+
+{/* <a class="twitter-timeline"
+  href="https://twitter.com/TwitterDev"
+  data-width="300"
+  data-height="300">
+Tweets by @TwitterDev
+</a> */}
+
