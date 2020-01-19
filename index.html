@@ -29,22 +29,36 @@
       </header>
       <section class="modal-card-body" style="color: black">
 
-        <div class="container">
+   <div class="columns">
+     <div class="column is-4">
+      <div class="container">
         <p id="price">Price: </p>
         <p id="marketCap">Market Cap: </p>
         <p id="priceGraph">Price Graph (past 7 days)</p>
-        
-      </div>
-      <canvas id="myChart"></canvas>
-      <canvas id="myChart2"></canvas><br><br>
-
-        Price, Volume, Market Cap, etc will go here...<br><br>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa necessitatibus nesciunt hic voluptatibus ullam fugit omnis quis, voluptates quaerat iusto, aliquid maxime deleniti obcaecati possimus aspernatur! Magnam distinctio iure laboriosam nihil similique quam laudantium recusandae veritatis reprehenderit animi fuga libero porro molestias, voluptatum dolores officiis  <br><br>
         <canvas id="myChart"></canvas>
+        <canvas id="myChart2"></canvas><br><br>
+        <canvas id="myChart"></canvas>  
+      </div>
+
+     </div>
+     <div class="column is-8">
+      Price, Volume, Market Cap, etc will go here...<br><br>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa necessitatibus nesciunt hic voluptatibus ullam fugit omnis quis, voluptates quaerat iusto, aliquid maxime deleniti obcaecati possimus aspernatur! Magnam distinctio iure laboriosam nihil similique quam laudantium recusandae veritatis reprehenderit animi fuga libero porro molestias, voluptatum dolores officiis  <br><br>
+    </div>
+   </div>
+
+         <div class="article-div columns">
+        <!-- Articles will go here... -->
+          <div class="article-container column is-8">
 
 
-        <div class="article-div">
-          <!-- Articles will go here... -->
+          </div>
+
+          <div class="tweeterFeed-container is-scrollable column is-4">
+
+
+
+          </div>
           
         </div>
       </section>
@@ -68,7 +82,7 @@
     
 
 
-
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="assets/javascript/script.js"></script>
 </body>
