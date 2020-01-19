@@ -3,7 +3,7 @@ html {
     background-image: url("https://i.gifer.com/RRsV.gif");
     background-position: center;
     background-repeat: no-repeat;
-    animation: fadeInAnimation ease 15s;
+    animation: fadeInAnimation ease 12s;
     animation-iteration-count: 1; 
     animation-fill-mode: forwards; 
 }
@@ -28,18 +28,24 @@ header {
     color: rgba(255, 255, 255, 0.164);
     text-align: center;
     letter-spacing: 28px;
-    font-size: 18px;
+    font-size: 20px;
     background: -webkit-linear-gradient(rgba(238, 238, 238, 0.418), rgb(110, 110, 110));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.modal-position-container {
+    width: 50%;
+    background-color: red;
 }
 
 .main-container {
     width: 100%;
     height: 650px;
     background-color: rgba(255, 255, 255, 0.048);
-    margin: 5px 20px 20px 20px;
+    margin: 5px auto 20px auto;
     border-radius: 10px;
+    
 }
 
 /* .main-container:hover{
@@ -57,6 +63,7 @@ header {
     background: -webkit-linear-gradient(rgb(56, 56, 56), rgb(255, 255, 255));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    
 }
 
 .icon-container {
@@ -92,9 +99,7 @@ header {
 }
 
 
-/* #eth-icon {
-    
-} */
+
 
 #eth-icon:hover {
     opacity: 1;
@@ -105,9 +110,6 @@ header {
     cursor: pointer;
 }
 
-/* #xrp-icon {
-       
-} */
 
 #xrp-icon:hover {
     opacity: 1;
@@ -117,8 +119,6 @@ header {
     filter: saturate(1);
     cursor: pointer;
 }
-
-
 
 #title-bitcoin {
     text-align: center;
@@ -159,10 +159,9 @@ footer{
     text-decoration: none;
 }
 
-
 .modal-card, .modal-content {
     margin: 0 auto;
-    width: 1200px;
+    width: 75%;
 }
 
 .is-scrollable {
@@ -179,3 +178,23 @@ footer{
 ::-webkit-scrollbar-thumb {
     background: rgb(233, 229, 3);
 }
+
+#main-modal {
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1; 
+    animation-fill-mode: forwards; 
+}
+
+#myChart, #myChart2{
+    max-height: 200px;
+    max-width: 200px;
+    float: left;
+}
+
+#myChart2 {
+    height: 300px;
+    width: 400px;
+    float: left;
+    clear: both;
+}
+
