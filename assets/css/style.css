@@ -3,7 +3,7 @@ html {
     background-image: url("https://i.gifer.com/RRsV.gif");
     background-position: center;
     background-repeat: no-repeat;
-    animation: fadeInAnimation ease 12s;
+    animation: fadeInAnimation ease 10s;
     animation-iteration-count: 1; 
     animation-fill-mode: forwards; 
 }
@@ -185,16 +185,29 @@ footer{
     animation-fill-mode: forwards; 
 }
 
-#myChart, #myChart2{
-    max-height: 200px;
-    max-width: 200px;
+#myChart{
+    max-height: 300px;
+    max-width: 300px;
     float: left;
+    margin: 0;
+    padding: 10px;
 }
 
 #myChart2 {
-    height: 300px;
-    width: 400px;
+    max-height: 300px;
+    max-width: 300px;
     float: left;
-    clear: both;
+    margin: 0;
+    padding: 10px;
+
+}
+
+#price {
+    font-weight: bold;
+    font-size: 40px;
+}
+
+#marketCap {
+    font-size: 25px;
 }
 
