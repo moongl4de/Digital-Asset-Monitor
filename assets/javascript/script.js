@@ -139,6 +139,7 @@ $("#btc-icon").on('click', function () {
   modalTitle.html("Bitcoin")
   DAMheading.attr("style", "opacity: 0")
   newsArticle(createURL("bitcoin"));
+  toggleTwitterSource("btc", btcTwitterSources);
 });
 
 $("#eth-icon").on('click', function () {
@@ -147,6 +148,7 @@ $("#eth-icon").on('click', function () {
   modalTitle.html("ethereum")
   DAMheading.attr("style", "opacity: 0")
   newsArticle(createURL("ethereum"));
+  toggleTwitterSource("eth", ethTwitterSources);
 });
 
 $("#xrp-icon").on('click', function () {
@@ -155,12 +157,12 @@ $("#xrp-icon").on('click', function () {
   modalTitle.html("XRP")
   DAMheading.attr("style", "opacity: 0")
   newsArticle(createURL("ripple"));
+  toggleTwitterSource("xrp", xrpcTwitterSources);
 });
 
 
-//Ideally, we should be able to have one or two functions. One to interact with the news API and print that information into the modal, and one to interact with the Nomics API to grab price, market cap, volume, etc.
-
-
+//div container to hold all contents associated with articles
+var $articlediv = $(".article-container");
 
 //method to create request URL based on the event and respective searchParameter
 function createURL(searchParam) {
@@ -169,23 +171,24 @@ function createURL(searchParam) {
 }
 
 //method to create articles HTML modal by taking advantage of Ajax API response data 
+//cryptoURL - is a callBack function
 function newsArticle(cryptoURL) {
   $.ajax({
     url: cryptoURL,
     method: "GET",
   }).then(function (response) {
-    var $articlediv = $(".article-div");
 
+$articlediv.addClass("is-scrollable");
     for (var i = 0; i < response.length; i++) {
+      var $link = $("<a>");
+      // $link.addClass("column")
+      $link.attr("href",response[i].url);
+      $link.attr("target","_blank");
+      $articlediv.append($link);
 
       var $article = $("<article>");
       $article.addClass("message is-small");
-      $articlediv.append($article);
-
-      var $link = $("<a>");
-      
-      $link.attr("href",response[i].url);
-      $article.append($link);
+      $link.append($article);
 
       var $articleHeader = $("<div>");
       $articleHeader.addClass("message-header");
@@ -222,5 +225,43 @@ function newsArticle(cryptoURL) {
       }
     }
   })
+}
+
+
+
+var btcTwitterSources = [`<a class="twitter-timeline" data-lang="en" href="https://twitter.com/Bitcoin?ref_src=twsrc%5Etfw">Tweets by Bitcoin</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`,
+ `<a class="twitter-timeline" href="https://twitter.com/BitcoinMagazine?ref_src=twsrc%5Etfw">Tweets by BitcoinMagazine</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" href="https://twitter.com/BTCTN?ref_src=twsrc%5Etfw">Tweets by BTCTN</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
+
+
+ var xrpTwitterSources = [`<a class="twitter-timeline" href="https://twitter.com/Ripple?ref_src=twsrc%5Etfw">Tweets by Ripple</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`,
+ `<a class="twitter-timeline" href="https://twitter.com/Ripple?ref_src=twsrc%5Etfw">Tweets by Ripple</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" href="https://twitter.com/bgarlinghouse?ref_src=twsrc%5Etfw">Tweets by bgarlinghouse</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
+
+ var ethTwitterSources = [`<a class="twitter-timeline" href="https://twitter.com/ethereum?ref_src=twsrc%5Etfw">Tweets by ethereum</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`,
+ `<a class="twitter-timeline" href="https://twitter.com/evan_van_ness?ref_src=twsrc%5Etfw">Tweets by evan_van_ness</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" href="https://twitter.com/ETHNews_?ref_src=twsrc%5Etfw">Tweets by ETHNews_</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
+
+ var defaultTwitterSource = [`<a class="twitter-timeline" href="https://twitter.com/crypto?ref_src=twsrc%5Etfw">Tweets by crypto</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
+
+
+ 
+
+//IIFE 
+function toggleTwitterSource (cryptoType, twitterSources){
+setInterval(function toggleTwitterTimeline(){
+  var randomNumb = Math.floor(Math.random() * 3) + 1;
+  switch (cryptoType) {
+    case "btc":
+        $(".tweeterFeed-container").html(twitterSources[randomNumb - 1]);
+        break;
+    case "xrp":
+        $(".tweeterFeed-container").html(twitterSources[randomNumb - 1]);
+        break;
+    case "eth":
+        $(".tweeterFeed-container").html(twitterSources[randomNumb - 1]);
+        break;
+    default:
+      $(".tweeterFeed-container").html(defaultTwitterSource[0]);
+}
+return toggleTwitterTimeline;
+}(), 10000)
 }
 
