@@ -165,3 +165,16 @@ footer{
     animation-fill-mode: forwards; 
 }
 
+#myChart, #myChart2{
+    max-height: 200px;
+    max-width: 200px;
+    float: left;
+}
+
+#myChart2 {
+    height: 300px;
+    width: 400px;
+    float: left;
+    clear: both;
+}
+
