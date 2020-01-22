@@ -20,7 +20,9 @@ var nomicsURL = `https://cors-anywhere.herokuapp.com/https://api.nomics.com/v1/c
 
 var cryptoCompareKey = "a588e6bd4c1f59b4d02ac7c3cb0418340411b08e5522208552fe2449cabdedd6"
 
-var cryptoCompareUrl =
+
+
+var quizButton = $(".quizButton");
 
 
 
@@ -234,6 +236,19 @@ xButton.on('click', function () {
   DAMheading.removeAttr("style", "opacity: 0")
   $("article-div").empty()
 });
+
+quizButton.on('click', function(){
+  modal.removeClass("is-active")
+  modalTitle.html("")
+  // $(".article-div").html("")
+  DAMheading.removeAttr("style", "opacity: 0")
+  $("article-div").empty()
+  $("#priceContainer").empty()
+  
+  modal.addClass("is-active")
+  
+  
+})
 
 //Click event to open BTC modal
 $("#btc-icon").on('click', function () {
