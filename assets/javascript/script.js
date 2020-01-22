@@ -127,7 +127,7 @@ function read() {
 xButton.on('click', function () {
   modal.removeClass("is-active")
   modalTitle.html("")
-  $(".article-div").html("")
+//  $(".article-div").html("")
   DAMheading.removeAttr("style", "opacity: 0")
 });
 
@@ -229,24 +229,24 @@ $articlediv.addClass("is-scrollable");
 
 
 
-var btcTwitterSources = [`<a class="twitter-timeline" data-lang="en" href="https://twitter.com/Bitcoin?ref_src=twsrc%5Etfw">Tweets by Bitcoin</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`,
- `<a class="twitter-timeline" href="https://twitter.com/BitcoinMagazine?ref_src=twsrc%5Etfw">Tweets by BitcoinMagazine</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" href="https://twitter.com/BTCTN?ref_src=twsrc%5Etfw">Tweets by BTCTN</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
+var btcTwitterSources = [`<a class="twitter-timeline" data-lang="en" data-height="500" href="https://twitter.com/Bitcoin?ref_src=twsrc%5Etfw">Tweets by Bitcoin</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`,
+ `<a class="twitter-timeline" data-height="500" href="https://twitter.com/BitcoinMagazine?ref_src=twsrc%5Etfw">Tweets by BitcoinMagazine</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" data-height="500" href="https://twitter.com/BTCTN?ref_src=twsrc%5Etfw">Tweets by BTCTN</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
 
 
- var xrpTwitterSources = [`<a class="twitter-timeline" href="https://twitter.com/Ripple?ref_src=twsrc%5Etfw">Tweets by Ripple</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`,
- `<a class="twitter-timeline" href="https://twitter.com/Ripple?ref_src=twsrc%5Etfw">Tweets by Ripple</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" href="https://twitter.com/bgarlinghouse?ref_src=twsrc%5Etfw">Tweets by bgarlinghouse</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
+ var xrpTwitterSources = [`<a class="twitter-timeline" data-height="500" href="https://twitter.com/Ripple?ref_src=twsrc%5Etfw">Tweets by Ripple</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`,
+ `<a class="twitter-timeline" data-height="500" href="https://twitter.com/Ripple?ref_src=twsrc%5Etfw">Tweets by Ripple</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" data-height="500" href="https://twitter.com/bgarlinghouse?ref_src=twsrc%5Etfw">Tweets by bgarlinghouse</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
 
- var ethTwitterSources = [`<a class="twitter-timeline" href="https://twitter.com/ethereum?ref_src=twsrc%5Etfw">Tweets by ethereum</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`,
- `<a class="twitter-timeline" href="https://twitter.com/evan_van_ness?ref_src=twsrc%5Etfw">Tweets by evan_van_ness</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" href="https://twitter.com/ETHNews_?ref_src=twsrc%5Etfw">Tweets by ETHNews_</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
+ var ethTwitterSources = [`<a class="twitter-timeline" data-height="500" href="https://twitter.com/ethereum?ref_src=twsrc%5Etfw">Tweets by ethereum</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`,
+ `<a class="twitter-timeline" data-height="500" href="https://twitter.com/evan_van_ness?ref_src=twsrc%5Etfw">Tweets by evan_van_ness</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" data-height="500" href="https://twitter.com/ETHNews_?ref_src=twsrc%5Etfw">Tweets by ETHNews_</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
 
- var defaultTwitterSource = [`<a class="twitter-timeline" href="https://twitter.com/crypto?ref_src=twsrc%5Etfw">Tweets by crypto</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
+ var defaultTwitterSource = [`<a class="twitter-timeline" data-height="500" href="https://twitter.com/crypto?ref_src=twsrc%5Etfw">Tweets by crypto</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
 
 
- 
+ var twitterToggler ;
 
 //IIFE 
 function toggleTwitterSource (cryptoType, twitterSources){
-setInterval(function toggleTwitterTimeline(){
+   twitterToggler = setInterval(function toggleTwitterTimeline(){
   var randomNumb = Math.floor(Math.random() * 3) + 1;
   switch (cryptoType) {
     case "btc":
@@ -262,6 +262,71 @@ setInterval(function toggleTwitterTimeline(){
       $(".tweeterFeed-container").html(defaultTwitterSource[0]);
 }
 return toggleTwitterTimeline;
-}(), 10000)
+}(), 10000);
+
+$(".tweeterFeed-container").mouseover(function(){
+  clearInterval(twitterToggler);
+}).mouseout(function(){
+  twitterToggler;
+})
+
+
 }
 
+
+function getMarketDominanceData(createChart) {
+
+  var data = [];
+  var labels;
+  var chartRequiredData;
+
+  $.ajax({
+    url: nomicsURL,
+    method: "GET"
+  }).then(function(response) {
+    var totalMarketCap = 0
+    //set the label names for the top 3 based on the crypto market cap
+     labels = [response[0].symbol,response[1].symbol, response[2].symbol, "Others"];
+
+    for(i=0; i < 3000; i++){
+      var marketCapLoopIndex = response[i].market_cap; 
+      var index = Number(marketCapLoopIndex);
+      totalMarketCap += index
+
+    }
+    var firstPlacePercentage = (response[0].market_cap/totalMarketCap)*100;
+    var secondPlacePercentage = (response[1].market_cap/totalMarketCap)*100;
+    var thirdPlacePercentage = (response[2].market_cap/totalMarketCap)*100;
+    var othersPercentage = 100 - (firstPlacePercentage + secondPlacePercentage + thirdPlacePercentage );
+    data.push(firstPlacePercentage.toFixed());
+    data.push(secondPlacePercentage.toFixed());
+    data.push(thirdPlacePercentage.toFixed());
+    data.push(othersPercentage.toFixed());
+
+    chartRequiredData = {
+      label: labels,
+      data: data,
+    };
+    // callbackFunction
+    createChart(chartRequiredData);
+
+  });
+}
+
+
+getMarketDominanceData(function (chartRequiredData){
+new Chart($("#dougnut_chart_01"), {
+  "type": "doughnut",
+  "data": {
+    // create an array representing "labels": ["BTC","ETH","XRP","Others"],
+     "labels": chartRequiredData.label,
+
+     "datasets": [{
+        "label": "Market Share",
+    //create an array representing "data":["66","8","4","22"],
+         "data": chartRequiredData.data,
+        "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+     }]
+  }
+});
+});

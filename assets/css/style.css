@@ -198,3 +198,8 @@ footer{
     clear: both;
 }
 
+.tweeterFeed-container {
+background-image: url("../images/twitterplaceHolder.png");
+background-repeat: no-repeat;
+}
+
