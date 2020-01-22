@@ -6,6 +6,7 @@ html {
     animation: fadeInAnimation ease 12s;
     animation-iteration-count: 1; 
     animation-fill-mode: forwards; 
+    
 }
 
 @keyframes fadeInAnimation { 
@@ -19,11 +20,12 @@ html {
 
 body {
     background-color: rgba(0, 0, 0, 0);
-    color: white;      
+    color: white;    
+    -webkit-font-smoothing: antialiased;  
 }
 
 header {
-    margin-top: -10px;
+    margin: -10px auto 0px auto;
     width: 100%;
     color: rgba(255, 255, 255, 0.164);
     text-align: center;
@@ -38,6 +40,8 @@ header {
     width: 50%;
     background-color: red;
 }
+
+
 
 .main-container {
     width: 100%;
@@ -72,6 +76,7 @@ header {
     justify-content: center;
     position: relative;
     top: 60%;
+    
 }
 
 .icons {
@@ -89,23 +94,27 @@ header {
 
 } */
 
+#btc-icon, #eth-icon, #xrp-icon {
+    filter: blur(1px);
+}
+
 #btc-icon:hover {
     opacity: 1;
-    transition: 1s;
-    width: 110px;
-    height: 110px;
+    transition: .5s;
+    
     filter: saturate(1);
     cursor: pointer;
 }
 
-
+.icon-clicked {
+    filter: blur(.3)
+}
 
 
 #eth-icon:hover {
     opacity: 1;
-    transition: 1s;
-    width: 110px;
-    height: 110px;
+    transition: .5s;
+
     filter: saturate(1);
     cursor: pointer;
 }
@@ -113,10 +122,8 @@ header {
 
 #xrp-icon:hover {
     opacity: 1;
-    transition: 1s;
-    width: 110px;
-    height: 110px;
-    filter: saturate(1);
+    transition: .5s;
+    filter: saturate(2);
     cursor: pointer;
 }
 
@@ -183,23 +190,136 @@ footer{
     animation: fadeInAnimation ease 3s;
     animation-iteration-count: 1; 
     animation-fill-mode: forwards; 
+    
 }
 
-#myChart, #myChart2{
+
+
+#chart-div {
+    display: inline-flex;
+    padding: 25px;
+    margin: 5px;
+}
+
+#myChart,#myChart2 {
     max-height: 200px;
-    max-width: 200px;
-    float: left;
+    max-width: 300px;
+
 }
 
-#myChart2 {
-    height: 300px;
-    width: 400px;
-    float: left;
-    clear: both;
+
+
+.github {
+    opacity: .3;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    margin: 10px;
+    filter: hue-rotate(1s)
+    
 }
+
 
 .tweeterFeed-container {
 background-image: url("../images/twitterplaceHolder.png");
 background-repeat: no-repeat;
+}
+
+
+.quizButton {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 80px;
+    height: 80px;
+    filter: contrast(130%)
+    
+}
+
+.quizButton:hover {
+    cursor: pointer;
+    
+}
+
+.github:hover {
+    opacity: 1;
+    transition: .5s;
+}
+
+#price {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 3px;
+    background: -webkit-linear-gradient(rgba(15, 15, 15, 0.418), rgb(71, 71, 71));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#marketCap, #circSupply, #maxSupply {
+    font-size: 14px;
+    
+}
+
+#priceContainer {
+    text-align: center;
+    line-height: 22px;
+    border: 1px rgba(0, 0, 0, 0.356) solid;
+    margin-top: 10%;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: rgb(247, 247, 247);
+    
+    
+}
+
+#priceContainer:hover {
+    box-shadow: 0px 0px 5px rgb(8, 4, 17);
+    transition: .3s;
+}
+
+
+@media only screen and (max-width: 1134px) {
+    #chart-div {
+        display: block;
+    }    
+
+
+
+@media only screen and (max-width: 600px) {
+    .icon-container {
+        margin: 50px auto 45px auto;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        top: 15%;
+        
+    }
+
+ 
+
+    .icons {
+        opacity: .6;
+        filter: saturate(.3);
+        margin: 0;;
+        background-color: rgba(65, 65, 65, 0);
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        
+    }
+
+    header {
+        font-size: 20px;
+        letter-spacing: 10px;;
+    }
+  }
+
+
+
+
+
 }
 
