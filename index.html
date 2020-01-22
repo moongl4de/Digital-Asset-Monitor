@@ -8,15 +8,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 </head>
 <body>
-    <div class="container">
+  
 
-        <div class="main-container">
+    <div class="container is-centered">
+      
+
+
+        <div class="main-container is-centered">
             <h1 class="heading">Digital Asset Monitor</h1>
-            <header id="header-reader"></header>
+            <header id="header-reader" class="is-centered"></header>
 
 
               <!--is-active will need to be removed/added in javascript-->
@@ -30,20 +34,23 @@
       <section class="modal-card-body" style="color: black">
 
    <div class="columns">
-     <div class="column is-4">
-      <div class="container">
+     <div class="column is-3">
+      <div class="container" id="priceContainer">
         <p id="price">Price: </p>
         <p id="marketCap">Market Cap: </p>
-        <p id="priceGraph">Price Graph (past 7 days)</p>
-        <canvas id="myChart"></canvas>
-        <canvas id="myChart2"></canvas><br><br>
-        <canvas id="myChart"></canvas>  
+        <p id="circSupply">24-Hour Volume: </p>
+        <p id="maxSupply">24-Hour Volume: </p>
+
       </div>
 
      </div>
-     <div class="column is-8">
-      Price, Volume, Market Cap, etc will go here...<br><br>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa necessitatibus nesciunt hic voluptatibus ullam fugit omnis quis, voluptates quaerat iusto, aliquid maxime deleniti obcaecati possimus aspernatur! Magnam distinctio iure laboriosam nihil similique quam laudantium recusandae veritatis reprehenderit animi fuga libero porro molestias, voluptatum dolores officiis  <br><br>
+     <div class="column is-6" id="chart-div"> 
+      <canvas id="myChart"></canvas>
+      <canvas id="myChart2"></canvas> 
+    </div>
+    <div class="column is-2">
+      
+
     </div>
    </div>
 
@@ -65,9 +72,8 @@
 
     </div>
   </div>
-
-            <div class="icon-container">
-                <img class="icons" id="btc-icon" src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9867bdb19da14e63ffbe63805298fa60bf255cdd/128/icon/btc.png">
+            <div class="icon-container is-centered">
+                <img class="icons icon-clicked" id="btc-icon" src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9867bdb19da14e63ffbe63805298fa60bf255cdd/128/icon/btc.png">
 
                 <img class="icons" id="eth-icon" src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9867bdb19da14e63ffbe63805298fa60bf255cdd/128/icon/eth.png">
 
@@ -75,9 +81,9 @@
             </div>
         </div>
     </div>
-
     
-
+    <a href="https://github.com/alexgignilliat/Digital-Asset-Monitor" target="_blank"><img class="github is-centered" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"></img></a>
+    <img class="quizButton" src="https://media2.giphy.com/media/68Y0ONLbyj5Hq/source.gif">
 </body>
     
 
