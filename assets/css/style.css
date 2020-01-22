@@ -222,6 +222,13 @@ footer{
     
 }
 
+
+.tweeterFeed-container {
+background-image: url("../images/twitterplaceHolder.png");
+background-repeat: no-repeat;
+}
+
+
 .quizButton {
     position: fixed;
     bottom: 0px;
@@ -315,3 +322,4 @@ footer{
 
 
 }
+
