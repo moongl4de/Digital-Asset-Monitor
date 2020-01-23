@@ -20,136 +20,93 @@ var nomicsURL = `https://cors-anywhere.herokuapp.com/https://api.nomics.com/v1/c
 
 var cryptoCompareKey = "a588e6bd4c1f59b4d02ac7c3cb0418340411b08e5522208552fe2449cabdedd6"
 
-var cryptoCompareUrl =
 
+// bitcoinDataCall()
 
+// TODO
+// Combine the calls
 
-bitcoinDataCall()
+// dataChartPrice7(response.Data.Data);
+var bitCoinDataSet = [];
+var ethumDataSet = [];
+var xrDataSet = [];
+
+function dataChartPrice7(moneyData) {
+  var ctx = document.getElementById('myChart').getContext('2d');
+
+  var dataResults = [];
+
+  // do the mapping to get the correct
+  for (var i = 4; i < moneyData.length; i++) {
+    dataResults.push(moneyData[i].high);
+  }
+  
+  var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+      labels: ['1', '2', '3', '4', '5', '6', '7'],
+      datasets: [{
+        label: 'Price Action / Past 7 Days',
+        backgroundColor: 'rgb(71, 71, 71, 0.308) ',
+        borderColor: 'rgb(120, 50, 255)',
+        data: dataResults
+      }]
+    },
+
+    // Configuration options go here
+    options: {}
+  })
+}
+
+function dataChartPriceLogarithmic() {
+  var ctx = document.getElementById('myChart2').getContext('2d');
+  var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+      labels: ['2010', '2012', '2014', '2016', '2018', '2020'],
+      datasets: [{
+        label: 'Price Action / Past 10 Years',
+        backgroundColor: 'rgb(71, 71, 71, 0.308) ',
+        borderColor: 'rgb(120, 50, 255)',
+        data: [0.08, 4.38, 716, 443, 15527, 11186]
+      }]
+    },
+
+    // Configuration options go here
+    options: {}
+  })
+}
+
 function bitcoinDataCall() {
   $.ajax({
     url: `https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=10&api_key=${cryptoCompareKey}`,
     method: "GET",
   }).then(function (response) {
     console.log(response)
-
-    var day7 = response.Data.Data[10].high
-    var day6 = response.Data.Data[9].high
-    var day5 = response.Data.Data[8].high
-    var day4 = response.Data.Data[7].high
-    var day3 = response.Data.Data[6].high
-    var day2 = response.Data.Data[5].high
-    var day1 = response.Data.Data[4].high
-
-    dataChartPrice7()
-    function dataChartPrice7() {
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-
-        // The data for our dataset
-        data: {
-          labels: ['1', '2', '3', '4', '5', '6', '7'],
-          datasets: [{
-            label: 'Price Action / Past 7 Days',
-            backgroundColor: 'rgb(71, 71, 71, 0.308) ',
-            borderColor: 'rgb(120, 50, 255)',
-            data: [day1, day2, day3, day4, day5, day6, day7]
-          }]
-        },
-
-        // Configuration options go here
-        options: {}
-      })
-    }
-    dataChartPriceLogarithmic()
-    function dataChartPriceLogarithmic() {
-      var ctx = document.getElementById('myChart2').getContext('2d');
-      var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-
-        // The data for our dataset
-        data: {
-          labels: ['2010', '2012', '2014', '2016', '2018', '2020'],
-          datasets: [{
-            label: 'Price Action / Past 10 Years',
-            backgroundColor: 'rgb(71, 71, 71, 0.308) ',
-            borderColor: 'rgb(120, 50, 255)',
-            data: [0.08, 4.38, 716, 443, 15527, 11186]
-          }]
-        },
-
-        // Configuration options go here
-        options: {}
-      })
-    }
+    bitCoinDataSet = response.Data.Data;
   })
 };
 
 var logChartObject = {
-  bitcoin : [2.83, 10.86, 204, 443, 457, 218],
-  ethereum : [2.83, 10.86, 204, 443, 457, 218],
-  xrp : [2.83, 10.86, 204, 443, 457, 218]
+  bitcoin: [2.83, 10.86, 204, 443, 457, 218],
+  ethereum: [2.83, 10.86, 204, 443, 457, 218],
+  xrp: [2.83, 10.86, 204, 443, 457, 218]
 }
+
+
 
 function ethereumDataCall() {
   $.ajax({
     url: `https://min-api.cryptocompare.com/data/v2/histoday?fsym=ETH&tsym=USD&limit=10&api_key=${cryptoCompareKey}`,
     method: "GET",
   }).then(function (response) {
-
-    var day7 = response.Data.Data[10].high
-    var day6 = response.Data.Data[9].high
-    var day5 = response.Data.Data[8].high
-    var day4 = response.Data.Data[7].high
-    var day3 = response.Data.Data[6].high
-    var day2 = response.Data.Data[5].high
-    var day1 = response.Data.Data[4].high
-
-    dataChartPrice7()
-    function dataChartPrice7() {
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-
-        // The data for our dataset
-        data: {
-          labels: ['1', '2', '3', '4', '5', '6', '7'],
-          datasets: [{
-            label: 'Price Action / Past 7 Days',
-            backgroundColor: 'rgb(71, 71, 71, 0.308) ',
-            borderColor: 'rgb(120, 50, 255)',
-            data: [day1, day2, day3, day4, day5, day6, day7]
-          }]
-        },
-
-        // Configuration options go here
-        options: {}
-      })
-    }
-    dataChartPriceLogarithmic()
-    function dataChartPriceLogarithmic() {
-      var ctx = document.getElementById('myChart2').getContext('2d');
-      var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-
-        // The data for our dataset
-        data: {
-          labels: ['2015', '2016', '2017', '2018', '2019'],
-          datasets: [{
-            label: 'Price Action / Past 5 Years',
-            backgroundColor: 'rgb(71, 71, 71, 0.308) ',
-            borderColor: 'rgb(120, 50, 255)',
-            data: [2.83, 10.86, 204, 443, 457, 218]
-          }]
-        },
-        // Configuration options go here
-        options: {}
-      })
-    }
+    ethumDataSet = response.Data.Data; // []
   })
 };
 
@@ -161,58 +118,24 @@ function xrpDataCall() {
     url: `https://min-api.cryptocompare.com/data/v2/histoday?fsym=XRP&tsym=USD&limit=10&api_key=${cryptoCompareKey}`,
     method: "GET",
   }).then(function (response) {
-    var day7 = response.Data.Data[10].high
-    var day6 = response.Data.Data[9].high
-    var day5 = response.Data.Data[8].high
-    var day4 = response.Data.Data[7].high
-    var day3 = response.Data.Data[6].high
-    var day2 = response.Data.Data[5].high
-    var day1 = response.Data.Data[4].high
-
-    dataChartPrice7()
-    function dataChartPrice7() {
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-        // The data for our dataset
-        data: {
-          labels: ['1', '2', '3', '4', '5', '6', '7'],
-          datasets: [{
-            label: 'Price Action / Past 7 Days',
-            backgroundColor: 'rgb(71, 71, 71, 0.308) ',
-            borderColor: 'rgb(120, 50, 255)',
-            data: [day1, day2, day3, day4, day5, day6, day7]
-          }]
-        },
-        // Configuration options go here
-        options: {}
-      })
-    }
-    dataChartPriceLogarithmic()
-    function dataChartPriceLogarithmic() {
-      var ctx = document.getElementById('myChart2').getContext('2d');
-      var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-
-        // The data for our dataset
-        data: {
-          labels: ['2010', '2012', '2014', '2016', '2018', '2020'],
-          datasets: [{
-            label: 'Price Action / Past 5 Years',
-            backgroundColor: 'rgb(71, 71, 71, 0.308) ',
-            borderColor: 'rgb(120, 50, 255)',
-            data: [0.02, .006, .006, 2.30, .35]
-          }]
-        },
-
-        // Configuration options go here
-        options: {}
-      })
-    }
+    xrDataSet = response.Data.Data;
   })
 };
+
+
+// Async/Await
+// Callback
+// Set us global variables
+
+
+// Loads
+function initApp() {
+  xrpDataCall();
+  ethereumDataCall();
+  bitcoinDataCall();
+}
+
+initApp();
 
 //Function for the changing text at the top of the page
 function readBuzzwords() {
@@ -238,35 +161,45 @@ xButton.on('click', function () {
 //Click event to open BTC modal
 $("#btc-icon").on('click', function () {
   chartDiv.empty()
-  bitcoinDataCall();
+  dataChartPrice7(bitCoinDataSet);
+  dataChartPriceLogarithmic();
   getPriceData(bitcoinResponse)
   modal.addClass("is-active")
   modalTitle.html("Bitcoin")
   DAMheading.attr("style", "opacity: 0")
   newsArticle(createURL("bitcoin"));
   toggleTwitterSource("btc", btcTwitterSources);
+
+  
 });
 //Click event to open ETH modal
 $("#eth-icon").on('click', function () {
   chartDiv.empty()
-  ethereumDataCall()
-  getPriceData(ethResponse)
+  // ethereumDataCall();
+  dataChartPrice7(ethumDataSet);
+  dataChartPriceLogarithmic();
+  // getPriceData(ethResponse)
+  // console.log('Ethum Data: ', etheRumData);
   modal.addClass("is-active")
   modalTitle.html("Ethereum")
   DAMheading.attr("style", "opacity: 0")
-  newsArticle(createURL("ethereum"));
-  toggleTwitterSource("eth", ethTwitterSources);
+  // newsArticle(createURL("ethereum"));
+  // toggleTwitterSource("eth", ethTwitterSources);
+  
 });
 //Click event to open XRP modal
 $("#xrp-icon").on('click', function () {
   chartDiv.empty()
-  xrpDataCall()
+  dataChartPrice7(xrDataSet);
+  dataChartPriceLogarithmic();
+  // xrpDataCall()
   getPriceData(xrpResponse)
   modal.addClass("is-active")
   modalTitle.html("XRP")
   DAMheading.attr("style", "opacity: 0")
   newsArticle(createURL("ripple"));
   toggleTwitterSource("xrp", xrpTwitterSources);
+  
 });
 
 
@@ -340,13 +273,16 @@ function newsArticle(cryptoURL) {
 }
 
 var btcTwitterSources = [`<a class="twitter-timeline" data-lang="en" href="https://twitter.com/Bitcoin?ref_src=twsrc%5Etfw">Tweets by Bitcoin</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`,
-  `<a class="twitter-timeline" href="https://twitter.com/BitcoinMagazine?ref_src=twsrc%5Etfw">Tweets by BitcoinMagazine</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" href="https://twitter.com/BTCTN?ref_src=twsrc%5Etfw">Tweets by BTCTN</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
+  `<a class="twitter-timeline" href="https://twitter.com/BitcoinMagazine?ref_src=twsrc%5Etfw">Tweets by BitcoinMagazine</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" href="https://twitter.com/BTCTN?ref_src=twsrc%5Etfw">Tweets by BTCTN</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`
+];
 
 var xrpTwitterSources = [`<a class="twitter-timeline" href="https://twitter.com/Ripple?ref_src=twsrc%5Etfw">Tweets by Ripple</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`,
-  `<a class="twitter-timeline" href="https://twitter.com/Ripple?ref_src=twsrc%5Etfw">Tweets by Ripple</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" href="https://twitter.com/bgarlinghouse?ref_src=twsrc%5Etfw">Tweets by bgarlinghouse</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
+  `<a class="twitter-timeline" href="https://twitter.com/Ripple?ref_src=twsrc%5Etfw">Tweets by Ripple</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" href="https://twitter.com/bgarlinghouse?ref_src=twsrc%5Etfw">Tweets by bgarlinghouse</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`
+];
 
 var ethTwitterSources = [`<a class="twitter-timeline" href="https://twitter.com/ethereum?ref_src=twsrc%5Etfw">Tweets by ethereum</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`,
-  `<a class="twitter-timeline" href="https://twitter.com/evan_van_ness?ref_src=twsrc%5Etfw">Tweets by evan_van_ness</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" href="https://twitter.com/ETHNews_?ref_src=twsrc%5Etfw">Tweets by ETHNews_</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
+  `<a class="twitter-timeline" href="https://twitter.com/evan_van_ness?ref_src=twsrc%5Etfw">Tweets by evan_van_ness</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" href="https://twitter.com/ETHNews_?ref_src=twsrc%5Etfw">Tweets by ETHNews_</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`
+];
 
 var defaultTwitterSource = [`<a class="twitter-timeline" href="https://twitter.com/crypto?ref_src=twsrc%5Etfw">Tweets by crypto</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
 
@@ -406,11 +342,9 @@ function getPriceData(cryptoParameter) {
       return totalMarketCap
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  }
-  )
+  })
 }
 
 
 
 readBuzzwords();
-
