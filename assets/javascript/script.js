@@ -257,7 +257,7 @@ $("#btc-icon").on('click', function () {
   modal.addClass("is-active")
   modalTitle.html("Bitcoin")
   DAMheading.attr("style", "opacity: 0")
-  newsArticle(createURL("bitcoin"));
+  createArticleContent ("bitcoin");
   toggleTwitterSource("btc", btcTwitterSources);
 });
 //Click event to open ETH modal
@@ -268,7 +268,7 @@ $("#eth-icon").on('click', function () {
   modal.addClass("is-active")
   modalTitle.html("Ethereum")
   DAMheading.attr("style", "opacity: 0")
-  newsArticle(createURL("ethereum"));
+  createArticleContent ("ethereum");
   toggleTwitterSource("eth", ethTwitterSources);
 });
 //Click event to open XRP modal
@@ -279,7 +279,7 @@ $("#xrp-icon").on('click', function () {
   modal.addClass("is-active")
   modalTitle.html("XRP")
   DAMheading.attr("style", "opacity: 0")
-  newsArticle(createURL("ripple"));
+  createArticleContent ("ripple");
   toggleTwitterSource("xrp", xrpTwitterSources);
 });
 
@@ -294,64 +294,77 @@ function createURL(searchParam) {
   return cryptoURL;
 }
 
+
+newsArticle("bitcoin", createURL("bitcoin"));
+newsArticle("ethereum", createURL("ethereum"));
+newsArticle("ripple", createURL("ripple"));
 //method to create articles HTML modal by taking advantage of Ajax API response data 
 //cryptoURL - is a callBack function
-function newsArticle(cryptoURL) {
+function newsArticle(cryptoType, cryptoURL) {
   console.log(cryptoURL);
   $.ajax({
     url: cryptoURL,
     method: "GET",
   }).then(function (response) {
+    localStorage.setItem(`${cryptoType}CryptoData`, JSON.stringify(response));
     console.log("got response");
     console.log(response);
-    $articlediv.empty()
-    $articlediv.addClass("is-scrollable");
-    for (var i = 0; i < response.length; i++) {
-      console.log("loop");
-      var $link = $("<a>");
-      // $link.addClass("column")
-      $link.attr("href", response[i].url);
-      $link.attr("target", "_blank");
-      $articlediv.append($link);
-
-      var $article = $("<article>");
-      $article.addClass("message is-small");
-      $link.append($article);
-
-      var $articleHeader = $("<div>");
-      $articleHeader.addClass("message-header");
-      $article.append($articleHeader);
-
-      var $title = $("<p>");
-      $title.text(response[i].title);
-      $articleHeader.append($title);
-
-      var $iconContainer = $("<div>");
-      $iconContainer.addClass("media-left columns is-mobile articleContainer");
-      $article.append($iconContainer);
-
-      var $articleImgCol = $("<div>");
-      $articleImgCol.addClass("column is-one-quarter");
-      $iconContainer.append($articleImgCol);
-
-      var $imgContainer = $("<img>");
-      $imgContainer.attr("src", response[i].thumbnail);
-      $articleImgCol.append($imgContainer);
-
-
-      var $articleContent = $("<div>");
-      $articleContent.addClass("column is-black is-link");
-      $iconContainer.append($articleContent);
-
-      var $description = $("<p>");
-      $description.text(response[i].description);
-      $articleContent.append($description);
-      if (i === 4) {
-        break;
-      }
-    }
-  })
+  }
+  )
 }
+
+//create article display elements
+function createArticleContent (cryptoType){
+  var response = JSON.parse(localStorage.getItem(`${cryptoType}CryptoData`));
+  console.log("bitcoin respose local = "+ JSON.stringify(response));
+  $articlediv.empty()
+  $articlediv.addClass("is-scrollable");
+  for (var i = 0; i < response.length; i++) {
+    console.log("loop");
+    var $link = $("<a>");
+    // $link.addClass("column")
+    $link.attr("href", response[i].url);
+    $link.attr("target", "_blank");
+    $articlediv.append($link);
+
+    var $article = $("<article>");
+    $article.addClass("message is-small");
+    $link.append($article);
+
+    var $articleHeader = $("<div>");
+    $articleHeader.addClass("message-header");
+    $article.append($articleHeader);
+
+    var $title = $("<p>");
+    $title.text(response[i].title);
+    $articleHeader.append($title);
+
+    var $iconContainer = $("<div>");
+    $iconContainer.addClass("media-left columns is-mobile articleContainer");
+    $article.append($iconContainer);
+
+    var $articleImgCol = $("<div>");
+    $articleImgCol.addClass("column is-one-quarter");
+    $iconContainer.append($articleImgCol);
+
+    var $imgContainer = $("<img>");
+    $imgContainer.attr("src", response[i].thumbnail);
+    $articleImgCol.append($imgContainer);
+
+
+    var $articleContent = $("<div>");
+    $articleContent.addClass("column is-black is-link");
+    $iconContainer.append($articleContent);
+
+    var $description = $("<p>");
+    $description.text(response[i].description);
+    $articleContent.append($description);
+    if (i === 4) {
+      break;
+    }
+  }
+}
+
 
 
 var btcTwitterSources = [`<a class="twitter-timeline" data-lang="en" data-height="500" href="https://twitter.com/Bitcoin?ref_src=twsrc%5Etfw">Tweets by Bitcoin</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`,
@@ -432,6 +445,7 @@ function getMarketDominanceData(createChart) {
       label: labels,
       data: data,
     };
+    localStorage.setItem("cryptoMarketDominanceChartData", JSON.stringify(chartRequiredData));
     // callbackFunction
     createChart(chartRequiredData);
 
@@ -440,7 +454,11 @@ function getMarketDominanceData(createChart) {
 
 
 getMarketDominanceData(function (chartRequiredData){
-new Chart($("#dougnut_chart_01"), {
+  if(chartRequiredData === undefined){
+    chartRequiredData = JSON.parse(localStorage.getItem("cryptoMarketDominanceChartData"));
+  }
+
+  var chart = new Chart($("#dougnut_chart_01"), {
   "type": "doughnut",
   "data": {
     // create an array representing "labels": ["BTC","ETH","XRP","Others"],

@@ -291,7 +291,7 @@ background-repeat: no-repeat;
 
 }
 
-/* canvas {
+canvas {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.555);
     border-radius: 7px;
 }
@@ -299,5 +299,5 @@ background-repeat: no-repeat;
 canvas:hover {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.829);
     transition: .3s;
-} */
+}
 
