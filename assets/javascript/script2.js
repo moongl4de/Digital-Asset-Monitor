@@ -1,4 +1,5 @@
-var startButton = document.getElementById('startButton')
+
+var startButton = $("#startButton")
 var buttonContainer = document.getElementById('buttonContainer')
 var questionText = document.getElementById('questionText')
 var button1 = document.getElementById('button1')
@@ -8,20 +9,16 @@ var button4 = document.getElementById('button4')
 var printScore = document.getElementById('score')
 var scoreForm = document.getElementById('scoreForm')
 var restart = document.getElementById('restartButton')
-var backToGithub = document.getElementById('backToGithub')
-
-
+var backToGithub = document.getElementById('backToDAM')
 var highScoreList = document.getElementById("high-score");
-
 var scoreInput = document.getElementById('formGroupExampleInput')
-var timer = document.getElementById("timer")
-
-
+// var timer = document.getElementById("timer")
+var timer = $("#timer")
 
 
 // var storedScores = [username, score]
 
-var scoreArr = ["Stephen Hawking : 199", "Carl Sagan : 184"]
+var scoreArr = []
 
 var gameOverSwitch = 0;
 var questionNumber = 0;
@@ -30,22 +27,23 @@ var countdown = 60;
 function setTime() {
   var timerInterval = setInterval(
     function() {
+      score--
+      printScore.innerText = "Score: " + score
       countdown--;
-      timer.innerText = countdown + " seconds left.";
+      timer.text(countdown + " seconds left.")
       if (countdown === 0) {
         clearInterval(timerInterval)
-        timer.textContent = ""
+        timer.text("")
         gameOver();
         alert("Time has run out!")
       }
       if (gameOverSwitch === 1){
         clearInterval(timerInterval)
-        timer.textContent = ""
+        timer.text("")
       }
     }, 1000);
 }
 
-//These are the questions that my code will pull from. After everything is working the way I want, I will use Math.random to randomize the questions. Also, I plan to add many more questions so that the quiz becomes more about answering as many questions correctly as possible within the time limit.
 var questions = [
     {
       title: "Cryptocurrencies like Bitcoin and Ethereum are built using which technology?",
@@ -54,34 +52,58 @@ var questions = [
     },
     {
       title: "Which of these is NOT a cryptocurrency?",
-      choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-      answer: "parentheses"
+      choices: ["Bitcoin Cash", "Ravencoin", "Dogecoin", "Glamdring"],
+      answer: "Glamdring"
     },
     {
-      title: "Which of the following is the correct syntax to display an alert box using JavaScript?",
-      choices: ["alertbox()", "msg()", "msgbox()", "alert()"],
-      answer: "alert()"
+      title: "What is currently the main use-case for XRP?",
+      choices: ["Debt Consolidation", "Cross-border Remittance", "E-Sports Awards", "Automation"],
+      answer: "Cross-border Remittance"
     },
     {
-      title: "JavaScript can be used to build: ",
-      choices: ["Sorting Algorithm Animations", "Browser-based Cryptocurrency Miners", "Multiple Choice Quizzes", "All of the above!"],
-      answer: "All of the above!"
+      title: "What is the algorithm used by Bitcoin?",
+      choices: ["Equihash", "Scrypt", "SHA-256", "X11"],
+      answer: "SHA-256"
     },
     {
-      title: "JavaScript, ________ and ________ are considered the three pillars of web development: ",
-      choices: ["HTML/BASIC", "TypeScript/Ruby", "Python/C++", "HTML/CSS"],
-      answer: "HTML/CSS"
+      title: "Bitcoin is:",
+      choices: ["Immutable", "Deflationary", "Decentralized", "All of the above"],
+      answer: "All of the above"
+    },
+    {
+      title: "Other cryptocurrencies apart from bitcoin are often referred to as?",
+      choices: ["Altcoins", "Money", "Code", "Cash"],
+      answer: "Altcoins"
+    },
+    {
+      title: "The first game built using Ethereum technology is called?",
+      choices: ["Cryptomon", "Cryptokitties", "Cryptobox", "Ethergame"],
+      answer: "Cryptokitties"
+    },
+    {
+      title: "Proof-of-work cryptocurrencies are distributed by...",
+      choices: ["Coding", "'Quantum Jumping'", "Mining", "Staking"],
+      answer: "Mining"
+    },
+    {
+      title: "Which of these is NOT a proof-of-work algorithm?",
+      choices: ["Dagger-Hashimoto", "NeoScrypt", "NiceHash", "Lyra2REv3"],
+      answer: "NiceHash"
+    },
+    {
+      title: "Which company is currently working with the Federal Reserve, World Bank and other major financial institutions to bring digital assets into the mainstream?",
+      choices: ["R3", "The Ethereum Foundation", "Ripple", "Mt. Gox"],
+      answer: "Ripple"
     },
   ];
 
 
-//Check for stored data
+
 initialize();
 
-//This is my start button click event. I've got it doing a few things here: hiding the button itself, revealing the button container and questionText, and calling the loadQuestion() and setTime() functions. loadQuestion() is going to get everything going and setTime() starts the timer.
 
 $("#startButton").on('click', function(){
-      startButton.setAttribute("style", "display: none")
+      startButton.attr("style", "display: none")
       buttonContainer.classList.remove('hide')
       questionText.classList.remove('hide')
       loadQuestion();
@@ -172,7 +194,7 @@ button4.innerText = questions[questionNumber].choices[3];
 }
 //Game Over function. This loads the high score form for the user to input their initials and save their score to client side storage.
 function gameOver(){
-  timer.textContent = ""
+  timer.text("")
   gameOverSwitch++;
   buttonContainer.classList.add('hide')
   backToGithub.classList.remove('hide')

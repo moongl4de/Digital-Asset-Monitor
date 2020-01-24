@@ -15,6 +15,7 @@
   
 
     <div class="container is-centered">
+
       
         <div class="main-container is-centered">
             <h1 class="heading">Digital Asset Monitor</h1>
@@ -23,34 +24,35 @@
               <!--is-active will need to be removed/added in javascript-->
   <div class="modal" id="main-modal">
     <div class="modal-background" style="opacity: 1;"></div>
-    <div class="modal-card">
+    <div class="modal-card" >
       <header class="modal-card-head" style="background-color: rgb(255, 255, 255);">
-        <p class="modal-card-title" style="text-shadow: 0px 0px 5px black;"></p>
+        <p class="modal-card-title" style="text-shadow: 0px 0px 5px black; text-align: center;"></p>
         <button id="x-button" type="button" class="delete" aria-label="close"></button>
       </header>
-      <section class="modal-card-body" style="color: black">
+      <section class="modal-card-body" style="color: black" >
 
    <div class="columns">
-     <div class="column is-3">
+     <div class="column is-centered">
       <div class="container" id="priceContainer">
-        <p id="price">Price: </p>
-        <p id="marketCap">Market Cap: </p>
-        <p id="circSupply">24-Hour Volume: </p>
-        <p id="maxSupply">24-Hour Volume: </p>
-
+        <p id="price"></p>
+        <p id="marketCap"></p>
+        <p id="circSupply"></p>
+        <p id="maxSupply"></p>
+      </div>
       </div>
 
      </div>
-     <div class="column is-6" id="chart-div"> 
-      <canvas id="myChart"></canvas>
-      <canvas id="myChart2"></canvas> 
-      <canvas class="chartjs" id="dougnut_chart_01" ></canvas>
+     <div class="columns">
+     <div class="column is-12" id="chart-div"> 
+      <canvas style="margin: 0 auto;" id="myChart"></canvas>
+      <canvas style="margin: 0 auto;" class="chartjs" id="dougnut_chart_01" ></canvas> 
+      <canvas style="margin: 0 auto;" id="myChart2"></canvas>
+      
     </div>
-    <div class="column is-2">
-     
-    </div>
-   </div>
+  </div>
 
+   
+  
          <div class="article-div columns">
         <!-- Articles will go here... -->
           <div class="article-container column is-8">
@@ -58,17 +60,18 @@
 
           </div>
 
-          <div class="tweeterFeed-container is-scrollable has-background-grey-light column is-4">
+          <div class="tweeterFeed-container is-scrollable column is-4">
 
 
 
           </div>
           
         </div>
+  </div>
       </section>
 
     </div>
-  </div>
+  
 
             <div class="icon-container is-centered">
                 <img class="icons icon-clicked" id="btc-icon" src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9867bdb19da14e63ffbe63805298fa60bf255cdd/128/icon/btc.png">
@@ -89,5 +92,7 @@
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="assets/javascript/script.js"></script>
+
+
 </body>
 </html>
