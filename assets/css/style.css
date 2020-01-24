@@ -52,13 +52,6 @@ header {
     
 }
 
-/* .main-container:hover{
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.151);
-    transition: 1s;
-    background-color: rgba(224, 224, 224, 0.123);
-    color: white;
-
-} */
 
 .heading {
     text-align: center;
@@ -189,25 +182,24 @@ footer{
 #main-modal {
     animation: fadeInAnimation ease 3s;
     animation-iteration-count: 1; 
-    animation-fill-mode: forwards; 
-    
+    animation-fill-mode: forwards;
 }
-
-
 
 #chart-div {
     display: inline-flex;
     padding: 25px;
-    margin: 5px;
+    margin: 0 auto;
 }
 
 #myChart,#myChart2 {
     max-height: 200px;
     max-width: 300px;
-
 }
 
-
+#dougnut_chart_01 {
+    max-height: 200px;
+    max-width: 300px;
+}
 
 .github {
     opacity: .3;
@@ -219,15 +211,12 @@ footer{
     bottom: 0px;
     margin: 10px;
     filter: hue-rotate(1s)
-    
 }
-
 
 .tweeterFeed-container {
 background-image: url("../images/twitterplaceHolder.png");
 background-repeat: no-repeat;
 }
-
 
 .quizButton {
     position: fixed;
@@ -235,18 +224,19 @@ background-repeat: no-repeat;
     left: 0px;
     width: 80px;
     height: 80px;
-    filter: contrast(130%)
-    
+    filter: contrast(120%);
+    opacity: .3;
 }
 
 .quizButton:hover {
     cursor: pointer;
-    
+    opacity: 1;
+    transition: .5s;
 }
 
 .github:hover {
     opacity: 1;
-    transition: .5s;
+    transition: .7s;
 }
 
 #price {
@@ -260,33 +250,17 @@ background-repeat: no-repeat;
 
 #marketCap, #circSupply, #maxSupply {
     font-size: 14px;
-    
 }
 
 #priceContainer {
     text-align: center;
     line-height: 22px;
-    border: 1px rgba(0, 0, 0, 0.356) solid;
-    margin-top: 10%;
-    border-radius: 10px;
-    padding: 20px;
-    background-color: rgb(247, 247, 247);
-    
-    
 }
-
-#priceContainer:hover {
-    box-shadow: 0px 0px 5px rgb(8, 4, 17);
-    transition: .3s;
-}
-
 
 @media only screen and (max-width: 1134px) {
     #chart-div {
         display: block;
     }    
-
-
 
 @media only screen and (max-width: 600px) {
     .icon-container {
@@ -297,8 +271,6 @@ background-repeat: no-repeat;
         top: 15%;
         
     }
-
- 
 
     .icons {
         opacity: .6;
@@ -317,9 +289,15 @@ background-repeat: no-repeat;
     }
   }
 
-
-
-
-
 }
+
+/* canvas {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.555);
+    border-radius: 7px;
+}
+
+canvas:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.829);
+    transition: .3s;
+} */
 
