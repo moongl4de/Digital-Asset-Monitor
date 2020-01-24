@@ -20,11 +20,13 @@ var nomicsURL = `https://cors-anywhere.herokuapp.com/https://api.nomics.com/v1/c
 
 var cryptoCompareKey = "a588e6bd4c1f59b4d02ac7c3cb0418340411b08e5522208552fe2449cabdedd6"
 
-var cryptoCompareUrl =
+
+
+var quizButton = $(".quizButton");
 
 
 
-bitcoinDataCall()
+
 function bitcoinDataCall() {
   $.ajax({
     url: `https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=10&api_key=${cryptoCompareKey}`,
@@ -233,6 +235,19 @@ xButton.on('click', function () {
   DAMheading.removeAttr("style", "opacity: 0")
   $("article-div").empty()
 });
+
+quizButton.on('click', function(){
+  modal.removeClass("is-active")
+  modalTitle.html("")
+  // $(".article-div").html("")
+  DAMheading.removeAttr("style", "opacity: 0")
+  $("article-div").empty()
+  $("#priceContainer").empty()
+  
+  modal.addClass("is-active")
+  
+  
+})
 
 //Click event to open BTC modal
 $("#btc-icon").on('click', function () {
@@ -448,7 +463,7 @@ new Chart($("#dougnut_chart_01"), {
         "label": "Market Share",
     //create an array representing "data":["66","8","4","22"],
          "data": chartRequiredData.data,
-        "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+        "backgroundColor": ["rgb(248,157,49)", "rgb(100,52,100)", "rgb(56,97,251)"]
      }]
   }
 });
@@ -475,10 +490,13 @@ function getPriceData(cryptoParameter) {
     var commaCirculatingSupply = circulatingSupplyResponse.toLocaleString()
     $("#circSupply").text("Circulating Supply: " + commaCirculatingSupply)
 
+    if(response[cryptoParameter].max_supply !== undefined){
     var marketCapResponse = parseFloat(response[cryptoParameter].max_supply)
     var commaMarketCap = marketCapResponse.toLocaleString()
     $("#maxSupply").text("Max Supply: " + commaMarketCap)
-
+    } else {
+      $("#maxSupply").text("Max Supply: No Cap Currently Set")
+    }
     //Formula for calculating total crypto market cap to a reasonably accurate degree. (Top 3000 cryptocurrencies)
     var totalMarketCap = 0
     for (i = 0; i < 3000; i++) {
@@ -495,4 +513,6 @@ function getPriceData(cryptoParameter) {
 
 
 readBuzzwords();
+
+
 
