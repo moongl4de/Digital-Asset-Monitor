@@ -445,6 +445,7 @@ function getMarketDominanceData(createChart) {
       label: labels,
       data: data,
     };
+    localStorage.setItem("cryptoMarketDominanceChartData", JSON.stringify(chartRequiredData));
     // callbackFunction
     createChart(chartRequiredData);
 
@@ -453,7 +454,11 @@ function getMarketDominanceData(createChart) {
 
 
 getMarketDominanceData(function (chartRequiredData){
-new Chart($("#dougnut_chart_01"), {
+  if(chartRequiredData === undefined){
+    chartRequiredData = JSON.parse(localStorage.getItem("cryptoMarketDominanceChartData"));
+  }
+
+  var chart = new Chart($("#dougnut_chart_01"), {
   "type": "doughnut",
   "data": {
     // create an array representing "labels": ["BTC","ETH","XRP","Others"],
