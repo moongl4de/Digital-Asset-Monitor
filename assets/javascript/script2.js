@@ -1,4 +1,3 @@
-
 var startButton = $("#startButton")
 var buttonContainer = document.getElementById('buttonContainer')
 var questionText = document.getElementById('questionText')
@@ -14,12 +13,8 @@ var highScoreList = document.getElementById("high-score");
 var scoreInput = document.getElementById('formGroupExampleInput')
 // var timer = document.getElementById("timer")
 var timer = $("#timer")
-
-
 // var storedScores = [username, score]
-
 var scoreArr = []
-
 var gameOverSwitch = 0;
 var questionNumber = 0;
 var score = 0;
