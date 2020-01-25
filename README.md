@@ -29,6 +29,16 @@ Clone to your local machine and open in your favorite code editor to check it ou
 - Give the user the ability to change ‘themes’ (Light theme, Dark theme, 80’s-style neon synthwave, etc)
 - More hidden features/easter eggs!
 
+## Contributors
+
+Alex Gignilliat, Alan Elam, Mesay Bekele
+
+## Contributors Github Pages
+
+- Alex Gignilliat - https://github.com/alexgignilliat
+- Alan Elam - https://github.com/aelam757
+- Mesay Bekele - https://github.com/mesayb
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
