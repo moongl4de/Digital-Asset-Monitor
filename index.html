@@ -8,30 +8,37 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 </head>
 <body>
+<<<<<<< HEAD
 
   
     <div class="container">
+=======
+  
+>>>>>>> 7f86adf3a784567c0684ac3e044fcd63b9b092e7
 
-        <div class="main-container">
+    <div class="container is-centered">
+
+      
+        <div class="main-container is-centered">
             <h1 class="heading">Digital Asset Monitor</h1>
-            <header id="header-reader"></header>
-
+            <header id="header-reader" class="is-centered"></header>
 
               <!--is-active will need to be removed/added in javascript-->
   <div class="modal" id="main-modal">
     <div class="modal-background" style="opacity: 1;"></div>
-    <div class="modal-card">
+    <div class="modal-card" >
       <header class="modal-card-head" style="background-color: rgb(255, 255, 255);">
-        <p class="modal-card-title" style="text-shadow: 0px 0px 5px black;"></p>
+        <p class="modal-card-title" style="text-shadow: 0px 0px 5px black; text-align: center;"></p>
         <button id="x-button" type="button" class="delete" aria-label="close"></button>
       </header>
-      <section class="modal-card-body" style="color: black">
+      <section class="modal-card-body" style="color: black" >
 
    <div class="columns">
+<<<<<<< HEAD
      <div class="column is-6">
       <div class="container">
         <p id="price">Price: </p>
@@ -45,9 +52,29 @@
      <div class="column is-6">
       Price, Volume, Market Cap, etc will go here...<br><br>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa necessitatibus nesciunt hic voluptatibus ullam fugit omnis quis, voluptates quaerat iusto, aliquid maxime deleniti obcaecati possimus aspernatur! Magnam distinctio iure laboriosam nihil similique quam laudantium recusandae veritatis reprehenderit animi fuga libero porro molestias, voluptatum dolores officiis  <br><br>
-    </div>
-   </div>
+=======
+     <div class="column is-centered">
+      <div class="container" id="priceContainer">
+        <p id="price"></p>
+        <p id="marketCap"></p>
+        <p id="circSupply"></p>
+        <p id="maxSupply"></p>
+      </div>
+      </div>
 
+     </div>
+     <div class="columns">
+     <div class="column is-12" id="chart-div"> 
+      <canvas style="margin: 0 auto;" id="myChart"></canvas>
+      <canvas style="margin: 0 auto;" class="chartjs" id="dougnut_chart_01" ></canvas> 
+      <canvas style="margin: 0 auto;" id="myChart2"></canvas>
+      
+>>>>>>> 7f86adf3a784567c0684ac3e044fcd63b9b092e7
+    </div>
+  </div>
+
+   
+  
          <div class="article-div columns">
         <!-- Articles will go here... -->
           <div class="article-container column is-8">
@@ -62,13 +89,14 @@
           </div>
           
         </div>
+  </div>
       </section>
 
     </div>
-  </div>
+  
 
-            <div class="icon-container">
-                <img class="icons" id="btc-icon" src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9867bdb19da14e63ffbe63805298fa60bf255cdd/128/icon/btc.png">
+            <div class="icon-container is-centered">
+                <img class="icons icon-clicked" id="btc-icon" src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9867bdb19da14e63ffbe63805298fa60bf255cdd/128/icon/btc.png">
 
                 <img class="icons" id="eth-icon" src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9867bdb19da14e63ffbe63805298fa60bf255cdd/128/icon/eth.png">
 
@@ -76,9 +104,9 @@
             </div>
         </div>
     </div>
-
     
-
+    <a href="https://github.com/alexgignilliat/Digital-Asset-Monitor" target="_blank"><img class="github is-centered" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"></img></a>
+    <a href="easter-egg.html"> <img class="quizButton" src="https://media2.giphy.com/media/68Y0ONLbyj5Hq/source.gif"></a>
 </body>
     
 
@@ -86,5 +114,7 @@
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="assets/javascript/script.js"></script>
+
+
 </body>
 </html>

@@ -6,6 +6,7 @@ html {
     animation: fadeInAnimation ease 10s;
     animation-iteration-count: 1; 
     animation-fill-mode: forwards; 
+    
 }
 
 @keyframes fadeInAnimation { 
@@ -19,11 +20,12 @@ html {
 
 body {
     background-color: rgba(0, 0, 0, 0);
-    color: white;      
+    color: white;    
+    -webkit-font-smoothing: antialiased;  
 }
 
 header {
-    margin-top: -10px;
+    margin: -10px auto 0px auto;
     width: 100%;
     color: rgba(255, 255, 255, 0.164);
     text-align: center;
@@ -39,6 +41,8 @@ header {
     background-color: red;
 }
 
+
+
 .main-container {
     width: 100%;
     height: 650px;
@@ -48,13 +52,6 @@ header {
     
 }
 
-/* .main-container:hover{
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.151);
-    transition: 1s;
-    background-color: rgba(224, 224, 224, 0.123);
-    color: white;
-
-} */
 
 .heading {
     text-align: center;
@@ -72,6 +69,7 @@ header {
     justify-content: center;
     position: relative;
     top: 60%;
+    
 }
 
 .icons {
@@ -89,23 +87,27 @@ header {
 
 } */
 
+#btc-icon, #eth-icon, #xrp-icon {
+    filter: blur(1px);
+}
+
 #btc-icon:hover {
     opacity: 1;
-    transition: 1s;
-    width: 110px;
-    height: 110px;
+    transition: .5s;
+    
     filter: saturate(1);
     cursor: pointer;
 }
 
-
+.icon-clicked {
+    filter: blur(.3)
+}
 
 
 #eth-icon:hover {
     opacity: 1;
-    transition: 1s;
-    width: 110px;
-    height: 110px;
+    transition: .5s;
+
     filter: saturate(1);
     cursor: pointer;
 }
@@ -113,10 +115,8 @@ header {
 
 #xrp-icon:hover {
     opacity: 1;
-    transition: 1s;
-    width: 110px;
-    height: 110px;
-    filter: saturate(1);
+    transition: .5s;
+    filter: saturate(2);
     cursor: pointer;
 }
 
@@ -182,9 +182,10 @@ footer{
 #main-modal {
     animation: fadeInAnimation ease 3s;
     animation-iteration-count: 1; 
-    animation-fill-mode: forwards; 
+    animation-fill-mode: forwards;
 }
 
+<<<<<<< HEAD
 #myChart{
     max-height: 300px;
     max-width: 300px;
@@ -200,14 +201,129 @@ footer{
     margin: 0;
     padding: 10px;
 
+=======
+#chart-div {
+    display: inline-flex;
+    padding: 25px;
+    margin: 0 auto;
+}
+
+#myChart,#myChart2 {
+    max-height: 200px;
+    max-width: 300px;
+}
+
+#dougnut_chart_01 {
+    max-height: 200px;
+    max-width: 300px;
+}
+
+.github {
+    opacity: .3;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    margin: 10px;
+    filter: hue-rotate(1s)
+}
+
+.tweeterFeed-container {
+background-image: url("../images/twitterplaceHolder.png");
+background-repeat: no-repeat;
+}
+
+.quizButton {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 80px;
+    height: 80px;
+    filter: contrast(120%);
+    opacity: .3;
+}
+
+.quizButton:hover {
+    cursor: pointer;
+    opacity: 1;
+    transition: .5s;
+}
+
+.github:hover {
+    opacity: 1;
+    transition: .7s;
+>>>>>>> 7f86adf3a784567c0684ac3e044fcd63b9b092e7
 }
 
 #price {
     font-weight: bold;
+<<<<<<< HEAD
     font-size: 40px;
 }
 
 #marketCap {
     font-size: 25px;
+=======
+    font-size: 20px;
+    margin-bottom: 3px;
+    background: -webkit-linear-gradient(rgba(15, 15, 15, 0.418), rgb(71, 71, 71));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#marketCap, #circSupply, #maxSupply {
+    font-size: 14px;
+}
+
+#priceContainer {
+    text-align: center;
+    line-height: 22px;
+}
+
+@media only screen and (max-width: 1134px) {
+    #chart-div {
+        display: block;
+    }    
+
+@media only screen and (max-width: 600px) {
+    .icon-container {
+        margin: 50px auto 45px auto;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        top: 15%;
+        
+    }
+
+    .icons {
+        opacity: .6;
+        filter: saturate(.3);
+        margin: 0;;
+        background-color: rgba(65, 65, 65, 0);
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        
+    }
+
+    header {
+        font-size: 20px;
+        letter-spacing: 10px;;
+    }
+  }
+
+}
+
+canvas {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.555);
+    border-radius: 7px;
+}
+
+canvas:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.829);
+    transition: .3s;
+>>>>>>> 7f86adf3a784567c0684ac3e044fcd63b9b092e7
 }
 

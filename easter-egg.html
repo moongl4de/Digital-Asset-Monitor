@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Code Quiz</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/style2.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="container" id="top-container">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <p id="score"></p>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <p id="timer"></p>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="main-div">
+            <div class="row">
+                <div class="col-12">
+                    <p id="questionText" class="hide"></p>
+                    <button id="startButton">begin quiz</button>
+                    <form id="scoreForm" class="hide">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Enter Initials</label>
+                        <input autocomplete="off" type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                      </div>
+                      <ol id="high-score">
+                      </ol>
+                    </form>
+                    <div class="hide" id="buttonContainer">
+                        <button class="buttons" id="button1" style="outline: none">Answer 1</button>
+                        <button class="buttons" id="button2" style="outline: none">Answer 2</button>
+                        <button class="buttons" id="button3" style="outline: none">Answer 3</button>
+                        <button class="buttons" id="button4" style="outline: none">Answer 4</button>
+                    </div>
+                    <div id="restartButton" class="hide">
+                    <button class="buttons" id="restartButton">Restart Quiz</button>
+                </div>
+                <a style="text-decoration: none" target="" href="index.html"><button type="button" id="backToDAM" class="buttons hide">Digital Asset Monitor</button></a>
+                </div>
+            </div>
+        </div>
+    <script src="assets/javascript/script2.js" async defer></script>
+    </body>
+</html>
