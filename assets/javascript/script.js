@@ -32,7 +32,6 @@ function bitcoinDataCall() {
     url: `https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=10&api_key=${cryptoCompareKey}`,
     method: "GET",
   }).then(function (response) {
-    console.log(response)
 
     var day7 = response.Data.Data[10].high
     var day6 = response.Data.Data[9].high
@@ -301,14 +300,11 @@ newsArticle("ripple", createURL("ripple"));
 //method to create articles HTML modal by taking advantage of Ajax API response data 
 //cryptoURL - is a callBack function
 function newsArticle(cryptoType, cryptoURL) {
-  console.log(cryptoURL);
   $.ajax({
     url: cryptoURL,
     method: "GET",
   }).then(function (response) {
     localStorage.setItem(`${cryptoType}CryptoData`, JSON.stringify(response));
-    console.log("got response");
-    console.log(response);
   }
   )
 }
@@ -316,11 +312,11 @@ function newsArticle(cryptoType, cryptoURL) {
 //create article display elements
 function createArticleContent (cryptoType){
   var response = JSON.parse(localStorage.getItem(`${cryptoType}CryptoData`));
-  console.log("bitcoin respose local = "+ JSON.stringify(response));
+
   $articlediv.empty()
   $articlediv.addClass("is-scrollable");
   for (var i = 0; i < response.length; i++) {
-    console.log("loop");
+
     var $link = $("<a>");
     // $link.addClass("column")
     $link.attr("href", response[i].url);
