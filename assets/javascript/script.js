@@ -293,12 +293,12 @@ function createURL(searchParam) {
   return cryptoURL;
 }
 
-
+//triggers API call and saves response on localStorage- which we later use to display article contents
 newsArticle("bitcoin", createURL("bitcoin"));
 newsArticle("ethereum", createURL("ethereum"));
 newsArticle("ripple", createURL("ripple"));
-//method to create articles HTML modal by taking advantage of Ajax API response data 
-//cryptoURL - is a callBack function
+
+//cryptoURL - is a callBack function which generates a URL
 function newsArticle(cryptoType, cryptoURL) {
   $.ajax({
     url: cryptoURL,
@@ -309,16 +309,16 @@ function newsArticle(cryptoType, cryptoURL) {
   )
 }
 
-//create article display elements
+//create article display elements - usinf data retrieved from local storage
 function createArticleContent (cryptoType){
   var response = JSON.parse(localStorage.getItem(`${cryptoType}CryptoData`));
-
+  //empty article div content before trying to create content
   $articlediv.empty()
   $articlediv.addClass("is-scrollable");
   for (var i = 0; i < response.length; i++) {
 
+    //capture link from the API response and apply it to the whole div content
     var $link = $("<a>");
-    // $link.addClass("column")
     $link.attr("href", response[i].url);
     $link.attr("target", "_blank");
     $articlediv.append($link);
@@ -327,6 +327,7 @@ function createArticleContent (cryptoType){
     $article.addClass("message is-small");
     $link.append($article);
 
+    //article header containing the description
     var $articleHeader = $("<div>");
     $articleHeader.addClass("message-header");
     $article.append($articleHeader);
@@ -335,6 +336,7 @@ function createArticleContent (cryptoType){
     $title.text(response[i].title);
     $articleHeader.append($title);
 
+    // div element containing article image
     var $iconContainer = $("<div>");
     $iconContainer.addClass("media-left columns is-mobile articleContainer");
     $article.append($iconContainer);
@@ -347,7 +349,7 @@ function createArticleContent (cryptoType){
     $imgContainer.attr("src", response[i].thumbnail);
     $articleImgCol.append($imgContainer);
 
-
+    // article detail description goes here
     var $articleContent = $("<div>");
     $articleContent.addClass("column is-black is-link");
     $iconContainer.append($articleContent);
@@ -362,7 +364,7 @@ function createArticleContent (cryptoType){
 }
 
 
-
+// array containing twitter timeline embedded HTML elements
 var btcTwitterSources = [`<a class="twitter-timeline" data-lang="en" data-height="500" href="https://twitter.com/Bitcoin?ref_src=twsrc%5Etfw">Tweets by Bitcoin</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`,
  `<a class="twitter-timeline" data-height="500" href="https://twitter.com/BitcoinMagazine?ref_src=twsrc%5Etfw">Tweets by BitcoinMagazine</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" data-height="500" href="https://twitter.com/BTCTN?ref_src=twsrc%5Etfw">Tweets by BTCTN</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
 
@@ -377,7 +379,7 @@ var btcTwitterSources = [`<a class="twitter-timeline" data-lang="en" data-height
 
  var twitterToggler ;
 
-//IIFE 
+//IIFE - function to toggle between different twitter timelines - changes every 10seconds
 function toggleTwitterSource (cryptoType, twitterSources){
    twitterToggler = setInterval(function toggleTwitterTimeline(){
   var randomNumb = Math.floor(Math.random() * 3) + 1;
@@ -403,11 +405,9 @@ $(".tweeterFeed-container").mouseover(function(){
 }).mouseout(function(){
   twitterToggler;
 })
-
-
 }
 
-
+//function to make an API call to nomics API and calculate market dominance from market cap. Saves to localstorage as a back up
 function getMarketDominanceData(createChart) {
 
   var data = [];
@@ -421,12 +421,11 @@ function getMarketDominanceData(createChart) {
     var totalMarketCap = 0
     //set the label names for the top 3 based on the crypto market cap
      labels = [response[0].symbol,response[1].symbol, response[2].symbol, "Others"];
-
+    //iterates over the top 3000 crypto currencies and calculates Market cap
     for(i=0; i < 3000; i++){
       var marketCapLoopIndex = response[i].market_cap; 
       var index = Number(marketCapLoopIndex);
       totalMarketCap += index
-
     }
     var firstPlacePercentage = (response[0].market_cap/totalMarketCap)*100;
     var secondPlacePercentage = (response[1].market_cap/totalMarketCap)*100;
@@ -444,11 +443,10 @@ function getMarketDominanceData(createChart) {
     localStorage.setItem("cryptoMarketDominanceChartData", JSON.stringify(chartRequiredData));
     // callbackFunction
     createChart(chartRequiredData);
-
   });
 }
 
-
+//function to create doughnut chart using chartrequired data 
 getMarketDominanceData(function (chartRequiredData){
   if(chartRequiredData === undefined){
     chartRequiredData = JSON.parse(localStorage.getItem("cryptoMarketDominanceChartData"));
@@ -459,10 +457,9 @@ getMarketDominanceData(function (chartRequiredData){
   "data": {
     // create an array representing "labels": ["BTC","ETH","XRP","Others"],
      "labels": chartRequiredData.label,
-
      "datasets": [{
         "label": "Market Share",
-    //create an array representing "data":["66","8","4","22"],
+         //create an array representing "data":["66","8","4","22"],
          "data": chartRequiredData.data,
         "backgroundColor": ["rgb(248,157,49)", "rgb(100,52,100)", "rgb(56,97,251)"]
      }]
