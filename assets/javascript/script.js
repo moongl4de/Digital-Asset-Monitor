@@ -1,32 +1,22 @@
 var buzzwords = "immutable secure encrypted open-source public transparent decentralized distributed borderless revolutionary verifiable collective peer-to-peer disruptive collaborative innovative";
 var buzzwordsSplit = buzzwords.split(" ");
-
 var nomicsKey = "6573705ad8ac4ca5c1f81d04c4c13346";
 //Switches for determining which data to pull. I know there are better ways to do this, will continue working this out. In the mean time, it is 100% functional.
 //The number (0,1,2) is the index of the respective data inside the ajax response
 var bitcoinResponse = 0;
 var ethResponse = 1;
 var xrpResponse = 2;
-
 // var coinlayerKey = "1bf97333fc25678c49ef405b1ae1b52b"
-
 var cryptocontrolAPIKey = "01a022055e3546253ff00081a2996bfd";
-
 var modal = $("#main-modal")
 var xButton = $("#x-button")
 var modalTitle = $(".modal-card-title")
 var DAMheading = $(".heading")
 var nomicsURL = `https://cors-anywhere.herokuapp.com/https://api.nomics.com/v1/currencies/ticker?key=${nomicsKey}`
-
 var cryptoCompareKey = "a588e6bd4c1f59b4d02ac7c3cb0418340411b08e5522208552fe2449cabdedd6"
-
-
-
 var quizButton = $(".quizButton");
 
-
-
-
+//Function for retriving price data from the CryptoCompare API and then inserting that data into charts using Chart.js
 function bitcoinDataCall() {
   $.ajax({
     url: `https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=10&api_key=${cryptoCompareKey}`,
@@ -48,7 +38,6 @@ function bitcoinDataCall() {
       var chart = new Chart(ctx, {
         // The type of chart we want to create
         type: 'line',
-
         // The data for our dataset
         data: {
           labels: ['1', '2', '3', '4', '5', '6', '7'],
@@ -64,6 +53,7 @@ function bitcoinDataCall() {
         options: {}
       })
     }
+    
     dataChartPriceLogarithmic()
     function dataChartPriceLogarithmic() {
       var ctx = document.getElementById('myChart2').getContext('2d');
@@ -88,13 +78,7 @@ function bitcoinDataCall() {
     }
   })
 };
-
-var logChartObject = {
-  bitcoin : [2.83, 10.86, 204, 443, 457, 218],
-  ethereum : [2.83, 10.86, 204, 443, 457, 218],
-  xrp : [2.83, 10.86, 204, 443, 457, 218]
-}
-
+//Function for retriving price data from the CryptoCompare API and then inserting that data into charts using Chart.js
 function ethereumDataCall() {
   $.ajax({
     url: `https://min-api.cryptocompare.com/data/v2/histoday?fsym=ETH&tsym=USD&limit=10&api_key=${cryptoCompareKey}`,
@@ -145,7 +129,7 @@ function ethereumDataCall() {
             label: 'Price Action / Past 5 Years',
             backgroundColor: 'rgb(71, 71, 71, 0.308) ',
             borderColor: 'rgb(120, 50, 255)',
-            data: [2.83, 10.86, 204, 443, 457, 218]
+            data: [2.83, 10.86, 204, 443, 218]
           }]
         },
         // Configuration options go here
@@ -155,9 +139,9 @@ function ethereumDataCall() {
   })
 };
 
-
 var chartDiv = $("#chartDiv")
 
+//Function for retriving price data from the CryptoCompare API and then inserting that data into charts using Chart.js
 function xrpDataCall() {
   $.ajax({
     url: `https://min-api.cryptocompare.com/data/v2/histoday?fsym=XRP&tsym=USD&limit=10&api_key=${cryptoCompareKey}`,
@@ -200,7 +184,7 @@ function xrpDataCall() {
 
         // The data for our dataset
         data: {
-          labels: ['2010', '2012', '2014', '2016', '2018', '2020'],
+          labels: ['2015', '2016', '2017', '2018', '2019'],
           datasets: [{
             label: 'Price Action / Past 5 Years',
             backgroundColor: 'rgb(71, 71, 71, 0.308) ',
@@ -236,18 +220,16 @@ xButton.on('click', function () {
   $("article-div").empty()
 });
 
-quizButton.on('click', function(){
-  modal.removeClass("is-active")
-  modalTitle.html("")
-  // $(".article-div").html("")
-  DAMheading.removeAttr("style", "opacity: 0")
-  $("article-div").empty()
-  $("#priceContainer").empty()
-  
-  modal.addClass("is-active")
-  
-  
-})
+//Hidden button to begin the quiz!
+// quizButton.on('click', function(){
+//   modal.removeClass("is-active")
+//   modalTitle.html("")
+//   // $(".article-div").html("")
+//   DAMheading.removeAttr("style", "opacity: 0")
+//   $("article-div").empty()
+//   $("#priceContainer").empty()
+//   modal.addClass("is-active")
+// })
 
 //Click event to open BTC modal
 $("#btc-icon").on('click', function () {
@@ -257,7 +239,7 @@ $("#btc-icon").on('click', function () {
   modal.addClass("is-active")
   modalTitle.html("Bitcoin")
   DAMheading.attr("style", "opacity: 0")
-  createArticleContent ("bitcoin");
+  newsArticle(createURL("bitcoin"));
   toggleTwitterSource("btc", btcTwitterSources);
 });
 //Click event to open ETH modal
@@ -268,7 +250,7 @@ $("#eth-icon").on('click', function () {
   modal.addClass("is-active")
   modalTitle.html("Ethereum")
   DAMheading.attr("style", "opacity: 0")
-  createArticleContent ("ethereum");
+  newsArticle(createURL("ethereum"));
   toggleTwitterSource("eth", ethTwitterSources);
 });
 //Click event to open XRP modal
@@ -279,7 +261,7 @@ $("#xrp-icon").on('click', function () {
   modal.addClass("is-active")
   modalTitle.html("XRP")
   DAMheading.attr("style", "opacity: 0")
-  createArticleContent ("ripple");
+  newsArticle(createURL("ripple"));
   toggleTwitterSource("xrp", xrpTwitterSources);
 });
 
@@ -294,82 +276,67 @@ function createURL(searchParam) {
   return cryptoURL;
 }
 
-
-newsArticle("bitcoin", createURL("bitcoin"));
-newsArticle("ethereum", createURL("ethereum"));
-newsArticle("ripple", createURL("ripple"));
 //method to create articles HTML modal by taking advantage of Ajax API response data 
 //cryptoURL - is a callBack function
-function newsArticle(cryptoType, cryptoURL) {
+function newsArticle(cryptoURL) {
   console.log(cryptoURL);
   $.ajax({
     url: cryptoURL,
     method: "GET",
   }).then(function (response) {
-    localStorage.setItem(`${cryptoType}CryptoData`, JSON.stringify(response));
     console.log("got response");
     console.log(response);
-  }
-  )
-}
+    $articlediv.empty()
+    $articlediv.addClass("is-scrollable");
+    for (var i = 0; i < response.length; i++) {
+      console.log("loop");
+      var $link = $("<a>");
+      // $link.addClass("column")
+      $link.attr("href", response[i].url);
+      $link.attr("target", "_blank");
+      $articlediv.append($link);
 
-//create article display elements
-function createArticleContent (cryptoType){
-  var response = JSON.parse(localStorage.getItem(`${cryptoType}CryptoData`));
-  console.log("bitcoin respose local = "+ JSON.stringify(response));
-  $articlediv.empty()
-  $articlediv.addClass("is-scrollable");
-  for (var i = 0; i < response.length; i++) {
-    console.log("loop");
-    var $link = $("<a>");
-    // $link.addClass("column")
-    $link.attr("href", response[i].url);
-    $link.attr("target", "_blank");
-    $articlediv.append($link);
+      var $article = $("<article>");
+      $article.addClass("message is-small");
+      $link.append($article);
 
-    var $article = $("<article>");
-    $article.addClass("message is-small");
-    $link.append($article);
+      var $articleHeader = $("<div>");
+      $articleHeader.addClass("message-header");
+      $article.append($articleHeader);
 
-    var $articleHeader = $("<div>");
-    $articleHeader.addClass("message-header");
-    $article.append($articleHeader);
+      var $title = $("<p>");
+      $title.text(response[i].title);
+      $articleHeader.append($title);
 
-    var $title = $("<p>");
-    $title.text(response[i].title);
-    $articleHeader.append($title);
+      var $iconContainer = $("<div>");
+      $iconContainer.addClass("media-left columns is-mobile articleContainer");
+      $article.append($iconContainer);
 
-    var $iconContainer = $("<div>");
-    $iconContainer.addClass("media-left columns is-mobile articleContainer");
-    $article.append($iconContainer);
+      var $articleImgCol = $("<div>");
+      $articleImgCol.addClass("column is-one-quarter");
+      $iconContainer.append($articleImgCol);
 
-    var $articleImgCol = $("<div>");
-    $articleImgCol.addClass("column is-one-quarter");
-    $iconContainer.append($articleImgCol);
-
-    var $imgContainer = $("<img>");
-    $imgContainer.attr("src", response[i].thumbnail);
-    $articleImgCol.append($imgContainer);
+      var $imgContainer = $("<img>");
+      $imgContainer.attr("src", response[i].thumbnail);
+      $articleImgCol.append($imgContainer);
 
 
-    var $articleContent = $("<div>");
-    $articleContent.addClass("column is-black is-link");
-    $iconContainer.append($articleContent);
+      var $articleContent = $("<div>");
+      $articleContent.addClass("column is-black is-link");
+      $iconContainer.append($articleContent);
 
-    var $description = $("<p>");
-    $description.text(response[i].description);
-    $articleContent.append($description);
-    if (i === 4) {
-      break;
+      var $description = $("<p>");
+      $description.text(response[i].description);
+      $articleContent.append($description);
+      if (i === 4) {
+        break;
+      }
     }
-  }
+  })
 }
-
-
 
 var btcTwitterSources = [`<a class="twitter-timeline" data-lang="en" data-height="500" href="https://twitter.com/Bitcoin?ref_src=twsrc%5Etfw">Tweets by Bitcoin</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`,
  `<a class="twitter-timeline" data-height="500" href="https://twitter.com/BitcoinMagazine?ref_src=twsrc%5Etfw">Tweets by BitcoinMagazine</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" data-height="500" href="https://twitter.com/BTCTN?ref_src=twsrc%5Etfw">Tweets by BTCTN</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
-
 
  var xrpTwitterSources = [`<a class="twitter-timeline" data-height="500" href="https://twitter.com/Ripple?ref_src=twsrc%5Etfw">Tweets by Ripple</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`,
  `<a class="twitter-timeline" data-height="500" href="https://twitter.com/Ripple?ref_src=twsrc%5Etfw">Tweets by Ripple</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`, `<a class="twitter-timeline" data-height="500" href="https://twitter.com/bgarlinghouse?ref_src=twsrc%5Etfw">Tweets by bgarlinghouse</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`];
@@ -407,13 +374,10 @@ $(".tweeterFeed-container").mouseover(function(){
 }).mouseout(function(){
   twitterToggler;
 })
-
-
 }
 
-
+//function to grab market dominance data and insert into doughnut chart using Chart.js
 function getMarketDominanceData(createChart) {
-
   var data = [];
   var labels;
   var chartRequiredData;
@@ -445,20 +409,13 @@ function getMarketDominanceData(createChart) {
       label: labels,
       data: data,
     };
-    localStorage.setItem("cryptoMarketDominanceChartData", JSON.stringify(chartRequiredData));
     // callbackFunction
     createChart(chartRequiredData);
-
   });
 }
 
-
 getMarketDominanceData(function (chartRequiredData){
-  if(chartRequiredData === undefined){
-    chartRequiredData = JSON.parse(localStorage.getItem("cryptoMarketDominanceChartData"));
-  }
-
-  var chart = new Chart($("#dougnut_chart_01"), {
+new Chart($("#dougnut_chart_01"), {
   "type": "doughnut",
   "data": {
     // create an array representing "labels": ["BTC","ETH","XRP","Others"],
@@ -473,7 +430,6 @@ getMarketDominanceData(function (chartRequiredData){
   }
 });
 });
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Function for grabbing price data for chosen cryptocurrency
@@ -514,8 +470,6 @@ function getPriceData(cryptoParameter) {
   }
   )
 }
-
-
 
 readBuzzwords();
 
