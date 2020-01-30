@@ -2,7 +2,7 @@
 
 ## Description
 
-This is minimalist, all-in-one information hub regarding the top digital assets. Most applications are geared toward professional traders, saturated with an overwhelming amount of data for a newcomer or even just your average investor. 
+This is a minimalist, all-in-one information hub regarding the top digital assets. Most applications are geared toward professional traders, saturated with an overwhelming amount of data for a newcomer or even just your average investor. 
 
 As someone who isn’t a professional trader, I don’t need all of the technical analysis data. I want a clear and concise interface that gives me information relevant to my interests so that I can stay up-to-date without investing a ton of time.
 
